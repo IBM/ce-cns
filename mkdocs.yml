@@ -1,0 +1,115 @@
+# Project information
+site_name: Workshop "Get started to deploy a Java Microservices application to Code Engine"
+site_url: https://thomassuedbroecker.github.io/ce-cns
+site_author: Thomas Suedbroecker
+
+# Repository
+repo_name: Code Engine - Cloud-Native-Starter
+repo_url: https://github.com/thomassuedbroecker/ce-cns
+edit_uri: edit/master/documentation
+docs_dir: documentation
+
+# Navigation
+nav:
+  - Introduction:
+     - Workshop overview: ./README.md
+  - Labs: 
+    - 1. Setup the example application: ./setup-example.md
+    - 2. Inspect the `Code Engine` project: ./inspect-the-project.md 
+    - 3. Monitoring of the applications: ./monitoring.md
+    - 4. Logging of the applications: ./logging.md
+    - 5. Cleanup the example application: ./cleanup-example.md
+  - Optional Labs: 
+    - 1. Run the example application locally: ./run-application-locally.md
+    - 2. Push containers to a container registry: ./push-to-container-registry.md
+  - Additional Resources:
+    - Cloud Native Starter example:
+       - Cloud-Native-Starter project: https://github.com/IBM/cloud-native-starter
+       - Cloud-Native-Starter project security: https://github.com/IBM/cloud-native-starter/security
+       - Keycloak core concepts of open-source identity and access management: https://developers.redhat.com/blog/2019/12/11/keycloak-core-concepts-of-open-source-identity-and-access-management/
+    - IBM CLoud Code Engine:
+       - Examples on GitHub: https://github.com/IBM/CodeEngine
+       - Code Engine CLI reference: https://cloud.ibm.com/docs/codeengine?topic=codeengine-cli
+
+## DO NOT CHANGE BELOW THIS LINE
+
+# Copyright
+# copyright: Copyright &copy; 2020 IBM Developer
+
+# Theme
+theme:
+  name: material
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  icon:
+    # logo: ibm_8bar_reverse_2
+    logo: material/library
+  features:
+    # - navigation.tabs
+    - navigation.instant
+    # - navigation.expand
+  palette:
+    scheme: default
+    primary: black
+    accent: blue
+  # palette:
+  #  scheme: default
+  #  primary: blue
+  #  accent: blue
+  # custom_dir: overrides
+
+# Plugins
+plugins:
+  - search
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ibm
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/ibmdeveloper
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/ibm/
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/user/developerworks
+    - icon: fontawesome/brands/dev
+      link: https://dev.to/ibmdeveloper
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
