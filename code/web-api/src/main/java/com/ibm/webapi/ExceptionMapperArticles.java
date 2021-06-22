@@ -1,6 +1,6 @@
 package com.ibm.webapi;
 
-import com.ibm.webapi.InvalidArticle;
+// import com.ibm.webapi.InvalidArticle;
 import org.eclipse.microprofile.rest.client.ext.ResponseExceptionMapper;
 
 import javax.ws.rs.core.MultivaluedMap;

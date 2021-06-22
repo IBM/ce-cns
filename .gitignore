@@ -1,5 +1,6 @@
 .DS_Store
 site/
+code/articles-liberty/
 node_modules
 target
 package-lock.json
@@ -7,4 +8,7 @@ yarn-error.log
 yarn.lock
 update-cns-realm.json
 tmp-cns-realm.json
+docker-compose.yml
+local-docker-run.sh
+local-run.sh
 

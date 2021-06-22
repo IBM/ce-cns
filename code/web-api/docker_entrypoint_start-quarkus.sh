@@ -17,5 +17,6 @@ java -Xmx128m \
      -Xscmx128m \
      -Xshareclasses:cacheDir=/opt/shareclasses \
      -Dcns.articles-url=${CNS_ARTICLES_URL} \
+     -Dcns.quarkus.oidc.auth-server-url=${QUARKUS_OIDC_AUTH_SERVER_URL} \
      -jar \
      /deployments/quarkus-run.jar
