@@ -19,11 +19,11 @@ public class ArticlesDataAccess {
     @PostConstruct
     void initialize() {
 
-        System.out.println("-->log: com.ibm.articles.ArticlesDataAccess.initialize");
-        System.out.println("-->log: com.ibm.articles.ArticlesDataAccess.initialize URL: " + articles_url);
+        System.out.println("-->log: com.ibm.web-api.ArticlesDataAccess.initialize");
+        System.out.println("-->log: com.ibm.web-api.ArticlesDataAccess.initialize URL: " + articles_url);
 
         URI apiV1 = UriBuilder.fromUri(articles_url).build();
-        System.out.println("-->log: com.ibm.articles.ArticlesDataAccess.initialize URI: " + apiV1.toString());
+        System.out.println("-->log: com.ibm.web-api.ArticlesDataAccess.initialize URI: " + apiV1.toString());
         articlesService = RestClientBuilder.newBuilder()
                 .baseUri(apiV1)
                 .register(ExceptionMapperArticles.class)
@@ -33,11 +33,11 @@ public class ArticlesDataAccess {
 
     public List<CoreArticle> getArticles(int amount) throws NoConnectivity {
         try {
-            System.out.println("-->log: com.ibm.articles.ArticlesDataAccess.getArticles");
+            System.out.println("-->log: com.ibm.web-api.ArticlesDataAccess.getArticles");
             return articlesService.getArticlesFromService(amount);
         } catch (Exception e) {
-            System.err.println("-->log: com.ibm.articles.ArticlesDataAccess.getArticles: Cannot connect to articles service");
-            System.out.println("-->log: com.ibm.articles.ArticlesDataAccess.getArticles URL: " + articles_url);
+            System.err.println("-->log: com.ibm.web-api.ArticlesDataAccess.getArticles: Cannot connect to articles service");
+            System.out.println("-->log: com.ibm.web-api.ArticlesDataAccess.getArticles URL: " + articles_url);
             throw new NoConnectivity(e);
         }
     }

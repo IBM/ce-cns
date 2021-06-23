@@ -1,14 +1,24 @@
 .DS_Store
 site/
+
+# Pending codes changes
 code/articles-liberty/
+code/articles-data/
+docker-compose.yml
+local-docker-run.sh
+local-run.sh
+ce-deploy-apps-pers.sh
+
+# Code 
 node_modules
 target
 package-lock.json
 yarn-error.log
 yarn.lock
+
+# Temp files
 update-cns-realm.json
 tmp-cns-realm.json
-docker-compose.yml
-local-docker-run.sh
-local-run.sh
+
+
 
