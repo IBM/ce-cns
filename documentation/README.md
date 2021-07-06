@@ -14,6 +14,10 @@ After you complete this workshop, you'll have a basic understanding of the follo
 
 > _The scope of this workshop is not to explain every aspect of running an application or job on `Code Engine`. It's just about containerized applications._
 
+Here is a `1 hour` YouTube `live stream` on [IBM Developer](https://www.youtube.com/channel/UCUm6InQvGI9-6vo1teGWINA)
+
+[![Get started with Java Microservices on IBM Cloud Code Engine](https://img.youtube.com/vi/x67_tD4APeQ/0.jpg)](https://www.youtube.com/watch?v=x67_tD4APeQ "Click play on youtube")
+
 ### Prerequisites
 
 * In order to run this workshop, you will need to create an [IBM Cloud `PayAsYouGo` account](https://ibm.biz/BdfXAn) (or log in to your existing account).
