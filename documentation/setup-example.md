@@ -110,6 +110,13 @@ export REPOSITORY=tsuedbroecker #the name of the public container repository on 
 export REGION="us-south" #the region in IBM Cloud that is used. When you choose Dallas as location during the creation of the project the region is "us-south"
 ```
 
+> PS: You can also use the `ce-deploy-apps-secret.sh` script, which does create [secrets](https://cloud.ibm.com/docs/codeengine?topic=codeengine-configmap-secret) for the user and password for the Keycloak container.
+
+```sh
+cd $ROOT_FOLDER/CE
+bash ce-deploy-apps-secret.sh
+```
+
 #### Step 4: Inspect the execution output
 
 The following shows an example execution result of the bash script and the last four lines do contain the routes to the applications.
