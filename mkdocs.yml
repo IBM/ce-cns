@@ -1,11 +1,11 @@
 # Project information
 site_name: Workshop "Get started to deploy a Java Microservices application to Code Engine"
-site_url: https://thomassuedbroecker.github.io/ce-cns
+site_url: https://ibm.github.io/ce-cns
 site_author: Thomas Suedbroecker
 
 # Repository
 repo_name: Code Engine - Cloud-Native-Starter
-repo_url: https://github.com/thomassuedbroecker/ce-cns
+repo_url: https://github.com/ibm/ce-cns
 edit_uri: edit/master/documentation
 docs_dir: documentation
 
@@ -43,8 +43,8 @@ theme:
     text: IBM Plex Sans
     code: IBM Plex Mono
   icon:
-    # logo: ibm_8bar_reverse_2
-    logo: material/library
+    logo: ibm_8bar_reverse_2.svg
+    #logo: material/library
   features:
     # - navigation.tabs
     - navigation.instant
