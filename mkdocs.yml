@@ -43,7 +43,8 @@ theme:
     text: IBM Plex Sans
     code: IBM Plex Mono
   icon:
-    logo: ibm_8bar_reverse_2.svg
+    # .svg automatically appended
+    logo: ibm_8bar_reverse_2
     #logo: material/library
   features:
     # - navigation.tabs
