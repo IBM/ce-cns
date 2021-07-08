@@ -58,7 +58,8 @@ theme:
   #  scheme: default
   #  primary: blue
   #  accent: blue
-  # custom_dir: overrides
+  # enable if you want to use a custom icon
+  custom_dir: overrides
 
 # Plugins
 plugins:
