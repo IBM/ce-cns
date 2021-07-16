@@ -17,7 +17,7 @@ bash ce-create-monitoring-logging-services.sh
 
 ![](images/cns-ce-monitoring-02.png)
 
-In case you don't have an existing instance of `IBM Cloud Monitoring` Code Engine will automatically guide you to create a  `lite plan` instance, when you select `Add monitoring`.
+In case you don't have an existing instance of `IBM Cloud Monitoring` Code Engine will automatically guide you to create a `lite plan` instance, when you select `Add monitoring`.
 
 ![](images/cns-ce-monitoring-04.png)
 

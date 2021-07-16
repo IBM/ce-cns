@@ -44,7 +44,7 @@ The image below shows the created `Code Engine` project.
 
 #### Step 1: Open the `IBM Cloud Shell`
 
-When using the IBM Cloud Shell, no client side setup is required for this workshop, it comes with all necessary CLIs (command line tools).
+When using the IBM Cloud Shell, no client-side setup is required for this workshop, it comes with all necessary CLIs (command line tools).
 
 Use following link to directly open the `IBM Cloud Shell`.
 
@@ -133,7 +133,7 @@ The following shows an example execution result of the bash script and the last 
 
 You can open the example application with the `Web-App` link. Copy the link and open the link in a browser.
 
-#### Step 5: Open  the example application in your browser
+#### Step 5: Open the example application in your browser
 
 Use `user: alice` and `password: alice` for the logon.
 

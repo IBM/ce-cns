@@ -19,7 +19,7 @@ In the following image you see:
 
 ### Step 3: Select `Applications`
 
-Here you find an overview of the currenly running applications. ( FYI The `Code Engine` definition for an application: `A program that serves HTTP requests`)
+Here you find an overview of the currently running applications. (FYI The `Code Engine` definition for an application: `A program that serves HTTP requests`)
 
 ![](images/cns-ce-inspect-project-02.png)
 

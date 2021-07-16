@@ -1,7 +1,7 @@
 # Lab 5: Cleanup the project
 
 We will delete all applications from your `Code Engine` project.
-Remember, the Keycloak application for the `Identity and Access Manegement` isn't configured to `scale to zero`, because the application is `stateful` and contains the realm configuration, which will be delete, if you would restart the application.
+Remember, the Keycloak application for the `Identity and Access Management` isn't configured to `scale to zero`, because the application is `stateful` and contains the realm configuration, which will be delete, if you would restart the application.
 Here we just delete all applications to avoid additional costs for you. 
 
 > _Note:_ You can also us the UI, in that Lab we use a bash script using the [IBM Cloud Code Engine CLI](https://cloud.ibm.com/docs/codeengine?topic=codeengine-cli)
