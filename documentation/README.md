@@ -14,7 +14,7 @@ After you complete this workshop, you'll have a basic understanding of the follo
 
 > _The scope of this workshop is not to explain every aspect of running an application or job on `Code Engine`. It's just about containerized applications._
 
-Here is a `1 hour` YouTube `live stream` on [IBM Developer](https://www.youtube.com/channel/UCUm6InQvGI9-6vo1teGWINA)
+Here is a `1-hour` YouTube `live stream` on [IBM Developer](https://www.youtube.com/channel/UCUm6InQvGI9-6vo1teGWINA)
 
 [![Get started with Java Microservices on IBM Cloud Code Engine](https://img.youtube.com/vi/x67_tD4APeQ/0.jpg)](https://www.youtube.com/watch?v=x67_tD4APeQ "Click play on youtube")
 
@@ -35,14 +35,14 @@ Here is a `1 hour` YouTube `live stream` on [IBM Developer](https://www.youtube.
 
 ### Architecture
 
-> This `workshop` is related to the [Cloud Native Starter](https://github.com/ibm/cloud-native-starter) project. In the workshop we use a costomized version of the [security application example](https://developer.ibm.com/languages/java/tutorials/secure-your-java-microservices-application-workshop/). 
+> This `workshop` is related to the [Cloud Native Starter](https://github.com/ibm/cloud-native-starter) project. In the workshop we use a customized version of the [security application example](https://developer.ibm.com/languages/java/tutorials/secure-your-java-microservices-application-workshop/). 
 
 The example application simply shows articles protected with an `Identity and Access Manegement`.
 In the following picture you see the frontend with the articles and the valid user `alice` is logged on.
 
 ![](images/cns-ce-example-application-00.png)
 
-The following diagram shows the architecture of the example application. There is a `web-app` frontend application that serves the Javascript/Vue.js code to the browser. The `web-app` code running in the browser invokes a REST API of the `web-api` microservice. The `web-api` microservice in turn invokes a REST API of the `articles` microservice. [`Keycloak`](https://www.keycloak.org/) is used for the `Identity and Access Manegement` of that microservices based application. To see the results in the web application, users need to be authenticated and they need to have the role `user`.
+The following diagram shows the architecture of the example application. There is a `web-app` frontend application that serves the JavaScript/Vue.js code to the browser. The `web-app` code running in the browser invokes a REST API of the `web-api` microservice. The `web-api` microservice in turn invokes a REST API of the `articles` microservice. [`Keycloak`](https://www.keycloak.org/) is used for the `Identity and Access Management` of that microservices based application. To see the results in the web application, users need to be authenticated and they need to have the role `user`.
 
 The image below shows the dependencies of the example:
 
@@ -52,7 +52,7 @@ The image below shows the dependencies of the example:
 
 In our context it's useful to have a basic understanding of the routing for example application. Based on the functionality of the application, we need `three external routes` for the example application.
 
-Each external route communication will be automaticly secured with a [TLS Encryption](https://en.wikipedia.org/wiki/Transport_Layer_Security) created by `Code Engine` using [Let's encrypt](https://letsencrypt.org/). The three applications are the `web-app` which will be loaded into the browser, the `Keycloak` that must be available for the authentication/authorization to our application and for potential configruation the `Identity and Access Manegement` and finally the `web-api` microservice which provides the articles data and will be invoked be the `web-app`.
+Each external route communication will be automatically secured with a [TLS Encryption](https://en.wikipedia.org/wiki/Transport_Layer_Security) created by `Code Engine` using [Let's encrypt](https://letsencrypt.org/). The three applications are the `web-app` which will be loaded into the browser, the `Keycloak` that must be available for the authentication/authorization to our application and for potential configuration the `Identity and Access Management` and finally the `web-api` microservice which provides the articles data and will be invoked be the `web-app`.
 
 The `articles` microservice doesn't need to be invoked from external, so it's configured to provide only an `internal route`, which is used by the  `web-api` microservice to get the articles from.
 
@@ -63,10 +63,10 @@ In the following table you see the **application**/container, the exposed **rout
 
 | **Application** | **Route** | **TLS Encryption** | **Scale to zero** | **Container Registry** | **vCPU** | **Memory** | **min Instances** | **max Instances** |
 | --- | --- | --- | --- |  --- | --- |  --- | --- | --- |
-| web-app | external | yes |yes | Quey | 0.5 | 1 GB | 0 | 1 |
+| web-app | external | yes |yes | Quay | 0.5 | 1 GB | 0 | 1 |
 | **keycloak** | external | yes | **no** | Docker | 0.5 | 1 GB | 1 | 1 |
-| web-api  | external | yes | yes | Quey | 0.5 | 1 GB | 0 | 1 |
-| **articles** | **internal** | no (mTLS comming sone) | yes | Quey | 0.25 | 0.5G GB | 0 | 1 |
+| web-api  | external | yes | yes | Quay | 0.5 | 1 GB | 0 | 1 |
+| **articles** | **internal** | no (mTLS coming sone) | yes | Quay | 0.25 | 0.5G GB | 0 | 1 |
 
 The `Keycloak` application for the `Identity and Access Manegement` isn't configured to `scale to zero`, because the application is `stateful` and contains the realm configuration, which will be delete, if you would restart the application.
 
