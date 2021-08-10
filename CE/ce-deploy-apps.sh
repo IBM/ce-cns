@@ -17,43 +17,9 @@ export WEBAPP_URL=""
 export ARTICEL_URL=""
 export STATUS="Running"
 
-# **************** Functions ****************************
-
-function configureKeycloak() {
-    echo "************************************"
-    echo " Configure Keycloak realm"
-    echo "************************************"
-
-    # Set the needed parameter
-    USER=admin
-    PASSWORD=admin
-    GRANT_TYPE=password
-    CLIENT_ID=admin-cli
-
-    access_token=$( curl -d "client_id=$CLIENT_ID" -d "username=$USER" -d "password=$PASSWORD" -d "grant_type=$GRANT_TYPE" "$KEYCLOAK_URL/auth/realms/master/protocol/openid-connect/token" | sed -n 's|.*"access_token":"\([^"]*\)".*|\1|p')
-
-    echo "Access token : $access_token"
-
-    # Create the realm in Keycloak
-    echo "------------------------------------------------------------------------"
-    echo "Create the realm in Keycloak"
-    echo "------------------------------------------------------------------------"
-    echo ""
-
-    result=$(curl -d @./cns-realm.json -H "Content-Type: application/json" -H "Authorization: bearer $access_token" "$KEYCLOAK_URL/auth/admin/realms")
-
-    if [ "$result" = "" ]; then
-    echo "------------------------------------------------------------------------"
-    echo "The realm is created."
-    echo "Open following link in your browser:"
-    echo "$KEYCLOAK_URL/auth/admin/master/console/#/realms/quarkus"
-    echo "------------------------------------------------------------------------"
-    else
-    echo "------------------------------------------------------------------------"
-    echo "It seems there is a problem with the realm creation: $result"
-    echo "------------------------------------------------------------------------"
-    fi
-}
+# **********************************************************************************
+# Functions definition
+# **********************************************************************************
 
 function setupCLIenvCE() {
   
@@ -97,6 +63,8 @@ function setupCLIenvCE() {
  
 }
 
+# ****** Keycloak ******
+
 function deployKeycloak(){
 
     ibmcloud ce application create --name keycloak \
@@ -110,32 +78,47 @@ function deployKeycloak(){
                                 --min-scale 1 \
                                 --port 8080 
 
-    array=("keycloak")
-    for i in "${array[@]}"
-    do 
-        echo ""
-        echo "------------------------------------------------------------------------"
-        echo "Check $i"
-        while :
-        do
-            FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
-            echo "Status: $STATUS_CHECK"
-            if [ "$STATUS" = "$STATUS_CHECK" ]; then
-                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
-                echo "------------------------------------------------------------------------"
-                break
-            else
-                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
-                echo "------------------------------------------------------------------------"
-            fi
-            sleep 5
-        done
-    done
-
+    # checkKubernetesPod "keycloak"
+   
     ibmcloud ce application get --name keycloak
     KEYCLOAK_URL=$(ibmcloud ce application get --name keycloak | grep "https://keycloak." |  awk '/keycloak/ {print $2}')
     echo "Set Keycloak URL: $KEYCLOAK_URL/auth"
+}
+
+function configureKeycloak() {
+    echo "************************************"
+    echo " Configure Keycloak realm"
+    echo "************************************"
+
+    # Set the needed parameter
+    USER=admin
+    PASSWORD=admin
+    GRANT_TYPE=password
+    CLIENT_ID=admin-cli
+
+    access_token=$( curl -d "client_id=$CLIENT_ID" -d "username=$USER" -d "password=$PASSWORD" -d "grant_type=$GRANT_TYPE" "$KEYCLOAK_URL/auth/realms/master/protocol/openid-connect/token" | sed -n 's|.*"access_token":"\([^"]*\)".*|\1|p')
+
+    echo "Access token : $access_token"
+
+    # Create the realm in Keycloak
+    echo "------------------------------------------------------------------------"
+    echo "Create the realm in Keycloak"
+    echo "------------------------------------------------------------------------"
+    echo ""
+
+    result=$(curl -d @./cns-realm.json -H "Content-Type: application/json" -H "Authorization: bearer $access_token" "$KEYCLOAK_URL/auth/admin/realms")
+
+    if [ "$result" = "" ]; then
+    echo "------------------------------------------------------------------------"
+    echo "The realm is created."
+    echo "Open following link in your browser:"
+    echo "$KEYCLOAK_URL/auth/admin/master/console/#/realms/quarkus"
+    echo "------------------------------------------------------------------------"
+    else
+    echo "------------------------------------------------------------------------"
+    echo "It seems there is a problem with the realm creation: $result"
+    echo "------------------------------------------------------------------------"
+    fi
 }
 
 function reconfigureKeycloak (){
@@ -177,6 +160,8 @@ function reconfigureKeycloak (){
     fi
 }
 
+# **** application and microservices ****
+
 function deployArticles(){
 
     ibmcloud ce application create --name articles --image "quay.io/$REPOSITORY/articles-ce:v3" \
@@ -189,28 +174,7 @@ function deployArticles(){
     
     ibmcloud ce application get --name articles
 
-    array=("articles")
-    for i in "${array[@]}"
-    do 
-        echo ""
-        echo "------------------------------------------------------------------------"
-        echo "Check $i"
-        while :
-        do
-            FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
-            echo "Status: $STATUS_CHECK"
-            if [ "$STATUS" = "$STATUS_CHECK" ]; then
-                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
-                echo "------------------------------------------------------------------------"
-                break
-            else
-                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
-                echo "------------------------------------------------------------------------"
-            fi
-            sleep 5
-        done
-    done
+    # checkKubernetesPod "articles"
 }
 
 function deployWebAPI(){
@@ -232,28 +196,7 @@ function deployWebAPI(){
     WEBAPI_URL=$(ibmcloud ce application get --name web-api | grep "https://web-api." |  awk '/web-api/ {print $2}')
     echo "Set WEBAPI URL: $WEBAPI_URL"
 
-    array=("web-api")
-    for i in "${array[@]}"
-    do 
-        echo ""
-        echo "------------------------------------------------------------------------"
-        echo "Check $i"
-        while :
-        do
-            FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
-            echo "Status: $STATUS_CHECK"
-            if [ "$STATUS" = "$STATUS_CHECK" ]; then
-                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
-                echo "------------------------------------------------------------------------"
-                break
-            else
-                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
-                echo "------------------------------------------------------------------------"
-            fi
-            sleep 5
-        done
-    done
+    # checkKubernetesPod "web-api"
 }
 
 function deployWebApp(){
@@ -292,28 +235,7 @@ function deployWebApp(){
     WEBAPP_URL=$(ibmcloud ce application get --name web-app | grep "https://web-app." |  awk '/web-app/ {print $2}')
     echo "Set WEBAPP URL: $WEBAPP_URL"
 
-    array=("web-app")
-    for i in "${array[@]}"
-    do 
-        echo ""
-        echo "------------------------------------------------------------------------"
-        echo "Check $i"
-        while :
-        do
-            FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
-            echo "Status: $STATUS_CHECK"
-            if [ "$STATUS" = "$STATUS_CHECK" ]; then
-                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
-                echo "------------------------------------------------------------------------"
-                break
-            else
-                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
-                echo "------------------------------------------------------------------------"
-            fi
-            sleep 5
-        done
-    done
+    # checkKubernetesPod "web-app"
 }
 
 function updateWebApp(){
@@ -326,30 +248,11 @@ function updateWebApp(){
     ibmcloud ce application get --name web-app
     WEBAPP_URL=$(ibmcloud ce application get --name web-app | grep "https://web-app." |  awk '/web-app/ {print $2}')
     echo "Set WEBAPP URL: $WEBAPP_URL"
-
-    array=("web-app-00002")
-    for i in "${array[@]}"
-    do 
-        echo ""
-        echo "------------------------------------------------------------------------"
-        echo "Check $i"
-        while :
-        do
-            FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
-            echo "Status: $STATUS_CHECK"
-            if [ "$STATUS" = "$STATUS_CHECK" ]; then
-                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
-                echo "------------------------------------------------------------------------"
-                break
-            else
-                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
-                echo "------------------------------------------------------------------------"
-            fi
-            sleep 5
-        done
-    done
+    
+    # checkKubernetesPod "web-app-00002"
 }
+
+# **** Kubernetes CLI ****
 
 function kubeDeploymentVerification(){
 
@@ -394,7 +297,35 @@ function getKubeContainerLogs(){
 
 }
 
+function checkKubernetesPod (){
+    application_pod="${1}" 
 
+    array=("$application_pod")
+    for i in "${array[@]}"
+    do 
+        echo ""
+        echo "------------------------------------------------------------------------"
+        echo "Check $i"
+        while :
+        do
+            FIND=$i
+            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
+            echo "Status: $STATUS_CHECK"
+            if [ "$STATUS" = "$STATUS_CHECK" ]; then
+                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
+                echo "------------------------------------------------------------------------"
+                break
+            else
+                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
+                echo "------------------------------------------------------------------------"
+            fi
+            sleep 5
+        done
+    done
+}
+
+# **********************************************************************************
+# Execution
 # **********************************************************************************
 
 echo "************************************"
@@ -408,7 +339,7 @@ echo " web-app (to get the redirect URL for Keycloak)"
 echo "************************************"
 
 deployWebApp
-ibmcloud ce application events --application web-app
+# ibmcloud ce application events --application web-app
 
 echo "************************************"
 echo " keycloak"
@@ -418,28 +349,28 @@ deployKeycloak
 # configureKeycloak
 # create realm with redirect url
 reconfigureKeycloak 
-ibmcloud ce application events --application keycloak
+# ibmcloud ce application events --application keycloak
 
 echo "************************************"
 echo " articles"
 echo "************************************"
 
 deployArticles
-ibmcloud ce application events --application articles
+# ibmcloud ce application events --application articles
 
 echo "************************************"
 echo " web-api"
 echo "************************************"
 
 deployWebAPI
-ibmcloud ce application events --application web-api
+# ibmcloud ce application events --application web-api
 
 echo "************************************"
 echo " update web-app"
 echo "************************************"
 
 updateWebApp
-ibmcloud ce application events --application web-app
+# ibmcloud ce application events --application web-app
 
 echo "************************************"
 echo " Verify deployments"

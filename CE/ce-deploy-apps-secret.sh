@@ -17,7 +17,53 @@ export WEBAPP_URL=""
 export ARTICEL_URL=""
 export STATUS="Running"
 
-# **************** Functions ****************************
+# **********************************************************************************
+# Functions definition
+# **********************************************************************************
+
+function setupCLIenvCE() {
+  
+  ibmcloud target -g $RESOURCE_GROUP
+  ibmcloud target -r $REGION
+  ibmcloud ce project get --name $PROJECT_NAME
+  ibmcloud ce project select -n $PROJECT_NAME
+  
+  #to use the kubectl commands
+  ibmcloud ce project select -n $PROJECT_NAME --kubecfg 
+  
+  # NAMESPACE=$(kubectl get namespaces | awk '/NAME/ { getline; print $0;}' | awk '{print $1;}')
+  NAMESPACE=$(ibmcloud ce project get --name $MYPROJECT --output json | sed -n 's|.*"namespace":"\([^"]*\)".*|\1|p')
+  echo "Namespace: $NAMESPACE"
+  kubectl get pods -n $NAMESPACE
+
+
+  # CHECK=$(kubectl get pods -n $NAMESPACE)
+  # echo "**********************************"
+  # echo "Check for existing pods? '$CHECK'"
+  # echo "**********************************"
+  # COMPARE="No resources found in $NAMESPACE namespace."
+  # if [[ "$CHECK" = "$COMPARE" ]];
+  # then
+  #   echo "Error: Wait until all pods are deleted inside the $NAMESPACE."
+  #   echo "The script exits here!"
+  #   exit 1
+  # fi
+
+  CHECK=$(ibmcloud ce project get -n $PROJECT_NAME | awk '/Apps/ {print $2;}')
+  echo "**********************************"
+  echo "Check for existing apps? '$CHECK'"
+  echo "**********************************"
+  if [ $CHECK != 0 ];
+  then
+    echo "Error: There are remaining '$CHECK' apps."
+    echo "Wait until all apps are deleted inside the $PROJECT_NAME."
+    echo "The script exits here!"
+    exit 1
+  fi
+ 
+}
+
+# ****** Keycloak ******
 
 function createSecrets() {
     
@@ -62,89 +108,6 @@ function configureKeycloak() {
     fi
 }
 
-function setupCLIenvCE() {
-  
-  ibmcloud target -g $RESOURCE_GROUP
-  ibmcloud target -r $REGION
-  ibmcloud ce project get --name $PROJECT_NAME
-  ibmcloud ce project select -n $PROJECT_NAME
-  
-  #to use the kubectl commands
-  ibmcloud ce project select -n $PROJECT_NAME --kubecfg 
-  
-  # NAMESPACE=$(kubectl get namespaces | awk '/NAME/ { getline; print $0;}' | awk '{print $1;}')
-  NAMESPACE=$(ibmcloud ce project get --name $MYPROJECT --output json | sed -n 's|.*"namespace":"\([^"]*\)".*|\1|p')
-  echo "Namespace: $NAMESPACE"
-  kubectl get pods -n $NAMESPACE
-
-
-  # CHECK=$(kubectl get pods -n $NAMESPACE)
-  # echo "**********************************"
-  # echo "Check for existing pods? '$CHECK'"
-  # echo "**********************************"
-  # COMPARE="No resources found in $NAMESPACE namespace."
-  # if [[ "$CHECK" = "$COMPARE" ]];
-  # then
-  #   echo "Error: Wait until all pods are deleted inside the $NAMESPACE."
-  #   echo "The script exits here!"
-  #   exit 1
-  # fi
-
-  CHECK=$(ibmcloud ce project get -n $PROJECT_NAME | awk '/Apps/ {print $2;}')
-  echo "**********************************"
-  echo "Check for existing apps? '$CHECK'"
-  echo "**********************************"
-  if [ $CHECK != 0 ];
-  then
-    echo "Error: There are remaining '$CHECK' apps."
-    echo "Wait until all apps are deleted inside the $PROJECT_NAME."
-    echo "The script exits here!"
-    exit 1
-  fi
- 
-}
-
-function deployKeycloak(){
-
-    ibmcloud ce application create --name keycloak \
-                                --image "quay.io/keycloak/keycloak:10.0.2" \
-                                --cpu 0.5 \
-                                --memory 1G \
-                                --env-from-secret keycloak.user \
-                                --env-from-secret keycloak.password \
-                                --env PROXY_ADDRESS_FORWARDING="true" \
-                                --max-scale 1 \
-                                --min-scale 1 \
-                                --port 8080 
-
-    array=("keycloak")
-    for i in "${array[@]}"
-    do 
-        echo ""
-        echo "------------------------------------------------------------------------"
-        echo "Check $i"
-        while :
-        do
-            FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
-            echo "Status: $STATUS_CHECK"
-            if [ "$STATUS" = "$STATUS_CHECK" ]; then
-                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
-                echo "------------------------------------------------------------------------"
-                break
-            else
-                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
-                echo "------------------------------------------------------------------------"
-            fi
-            sleep 5
-        done
-    done
-
-    ibmcloud ce application get --name keycloak
-    KEYCLOAK_URL=$(ibmcloud ce application get --name keycloak | grep "https://keycloak." |  awk '/keycloak/ {print $2}')
-    echo "Set Keycloak URL: $KEYCLOAK_URL/auth"
-}
-
 function reconfigureKeycloak (){
     REALM=cns-realm.json
     UPDATE_REALM=update-cns-realm.json
@@ -184,6 +147,28 @@ function reconfigureKeycloak (){
     fi
 }
 
+function deployKeycloak(){
+
+    ibmcloud ce application create --name keycloak \
+                                --image "quay.io/keycloak/keycloak:10.0.2" \
+                                --cpu 0.5 \
+                                --memory 1G \
+                                --env-from-secret keycloak.user \
+                                --env-from-secret keycloak.password \
+                                --env PROXY_ADDRESS_FORWARDING="true" \
+                                --max-scale 1 \
+                                --min-scale 1 \
+                                --port 8080 
+
+    # checkKubernetesPod "keycloak"
+    
+    ibmcloud ce application get --name keycloak
+    KEYCLOAK_URL=$(ibmcloud ce application get --name keycloak | grep "https://keycloak." |  awk '/keycloak/ {print $2}')
+    echo "Set Keycloak URL: $KEYCLOAK_URL/auth"
+}
+
+# **** application and microservices ****
+
 function deployArticles(){
 
     ibmcloud ce application create --name articles --image "quay.io/$REPOSITORY/articles-ce:v3" \
@@ -196,28 +181,7 @@ function deployArticles(){
     
     ibmcloud ce application get --name articles
 
-    array=("articles")
-    for i in "${array[@]}"
-    do 
-        echo ""
-        echo "------------------------------------------------------------------------"
-        echo "Check $i"
-        while :
-        do
-            FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
-            echo "Status: $STATUS_CHECK"
-            if [ "$STATUS" = "$STATUS_CHECK" ]; then
-                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
-                echo "------------------------------------------------------------------------"
-                break
-            else
-                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
-                echo "------------------------------------------------------------------------"
-            fi
-            sleep 5
-        done
-    done
+    # checkKubernetesPod "articles"
 }
 
 function deployWebAPI(){
@@ -239,28 +203,7 @@ function deployWebAPI(){
     WEBAPI_URL=$(ibmcloud ce application get --name web-api | grep "https://web-api." |  awk '/web-api/ {print $2}')
     echo "Set WEBAPI URL: $WEBAPI_URL"
 
-    array=("web-api")
-    for i in "${array[@]}"
-    do 
-        echo ""
-        echo "------------------------------------------------------------------------"
-        echo "Check $i"
-        while :
-        do
-            FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
-            echo "Status: $STATUS_CHECK"
-            if [ "$STATUS" = "$STATUS_CHECK" ]; then
-                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
-                echo "------------------------------------------------------------------------"
-                break
-            else
-                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
-                echo "------------------------------------------------------------------------"
-            fi
-            sleep 5
-        done
-    done
+    # checkKubernetesPod "web-api"
 }
 
 function deployWebApp(){
@@ -299,28 +242,7 @@ function deployWebApp(){
     WEBAPP_URL=$(ibmcloud ce application get --name web-app | grep "https://web-app." |  awk '/web-app/ {print $2}')
     echo "Set WEBAPP URL: $WEBAPP_URL"
 
-    array=("web-app")
-    for i in "${array[@]}"
-    do 
-        echo ""
-        echo "------------------------------------------------------------------------"
-        echo "Check $i"
-        while :
-        do
-            FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
-            echo "Status: $STATUS_CHECK"
-            if [ "$STATUS" = "$STATUS_CHECK" ]; then
-                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
-                echo "------------------------------------------------------------------------"
-                break
-            else
-                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
-                echo "------------------------------------------------------------------------"
-            fi
-            sleep 5
-        done
-    done
+    checkKubernetesPod "web-app"
 }
 
 function updateWebApp(){
@@ -334,29 +256,10 @@ function updateWebApp(){
     WEBAPP_URL=$(ibmcloud ce application get --name web-app | grep "https://web-app." |  awk '/web-app/ {print $2}')
     echo "Set WEBAPP URL: $WEBAPP_URL"
 
-    array=("web-app-00002")
-    for i in "${array[@]}"
-    do 
-        echo ""
-        echo "------------------------------------------------------------------------"
-        echo "Check $i"
-        while :
-        do
-            FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
-            echo "Status: $STATUS_CHECK"
-            if [ "$STATUS" = "$STATUS_CHECK" ]; then
-                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
-                echo "------------------------------------------------------------------------"
-                break
-            else
-                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
-                echo "------------------------------------------------------------------------"
-            fi
-            sleep 5
-        done
-    done
+    # checkKubernetesPod "web-app-00002"
 }
+
+# **** Kubernetes CLI ****
 
 function kubeDeploymentVerification(){
 
@@ -401,6 +304,35 @@ function getKubeContainerLogs(){
 
 }
 
+function checkKubernetesPod (){
+    application_pod="${1}" 
+
+    array=("$application_pod")
+    for i in "${array[@]}"
+    do 
+        echo ""
+        echo "------------------------------------------------------------------------"
+        echo "Check $i"
+        while :
+        do
+            FIND=$i
+            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
+            echo "Status: $STATUS_CHECK"
+            if [ "$STATUS" = "$STATUS_CHECK" ]; then
+                echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
+                echo "------------------------------------------------------------------------"
+                break
+            else
+                echo "$(date +'%F %H:%M:%S') Status: $FIND($STATUS_CHECK)"
+                echo "------------------------------------------------------------------------"
+            fi
+            sleep 5
+        done
+    done
+}
+
+# **********************************************************************************
+# Execution
 # **********************************************************************************
 
 echo "************************************"
@@ -420,7 +352,7 @@ echo " web-app (to get the redirect URL for Keycloak)"
 echo "************************************"
 
 deployWebApp
-ibmcloud ce application events --application web-app
+# ibmcloud ce application events --application web-app
 
 echo "************************************"
 echo " keycloak"
@@ -437,21 +369,21 @@ echo " articles"
 echo "************************************"
 
 deployArticles
-ibmcloud ce application events --application articles
+# ibmcloud ce application events --application articles
 
 echo "************************************"
 echo " web-api"
 echo "************************************"
 
 deployWebAPI
-ibmcloud ce application events --application web-api
+# ibmcloud ce application events --application web-api
 
 echo "************************************"
 echo " update web-app"
 echo "************************************"
 
 updateWebApp
-ibmcloud ce application events --application web-app
+# ibmcloud ce application events --application web-app
 
 echo "************************************"
 echo " Verify deployments"
