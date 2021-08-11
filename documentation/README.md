@@ -1,4 +1,4 @@
-# Workshop: Get started to deploy a Java Microservices application to `Code Engine`
+# Workshop: Deploy a Java microservices application to `IBM Cloud Code Engine`
 
 ### Objectives
 
