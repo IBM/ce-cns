@@ -2,7 +2,9 @@
 
 Here we use the [IBM Cloud Log Analysis](https://cloud.ibm.com/docs/log-analysis?topic=log-analysis-getting-started#getting-started) (lite plan).
 
-> You can create the lite service instances for logging and monitoring by using this bash script.
+### Create the logging service automatically
+
+You can create the lite service instances for logging and monitoring by using this bash script.
 
 ```sh
 cd $ROOT_FOLDER/CE
@@ -19,26 +21,34 @@ bash ce-create-monitoring-logging-services.sh
 
 ![](images/cns-ce-logging-01.png)
 
+> In case you don't have an existing instance of `IBM Cloud Log Analysis` Code Engine follow steps in `Create an IBM Cloud Log Analysis service manually` or use the bash script.
+
+#### Step 3: Verify the IBM Cloud Log Analysis will be opened in the browser 
+
+### Create an IBM Cloud Log Analysis service manually
+
+#### Step 1: Select `Actions -> Add logging`
+
 In case you don't have an existing instance of `IBM Cloud Log Analysis` Code Engine will automatically guide you to create a `lite plan` instance, when you select `Actions -> Add logging`.
 
 ![](images/cns-ce-logging-04.png)
 
-In the upcoming dialog select `Lite` and leave the defaults selected for `region` and `resource group`.
+#### Step 2: In the upcoming dialog select `Lite` and leave the defaults selected for `region` and `resource group`.
+
 Name the service instance `IBMCloudLogging-Code-Engine` and press `Create`.
 
 ![](images/cns-ce-logging-05.png)
 
-Then refresh your browser with your Code Engine project. 
+#### Step 3: Refresh your browser with your Code Engine project.
+ 
 When the `IBM Cloud Log Analysis` is ready and you select `Actions -> Add logging` again, following dialog will appear.
 In this dialog you select your just created `IBM Cloud Log Analysis` service instance with the name `IBMCloudLogging-Code-Engine`.
 
 ![](images/cns-ce-logging-06.png)
 
-Then you use the `IBM Cloud Log Analysis` service.
+Now you use the `IBM Cloud Log Analysis` service.
 
-#### Step 3: This opens the IBM Cloud Log Analysis
-
-### Configure a filter
+### Configure a filter for the logging
 
 #### Step 1: Select from Sources `Code Engine`
 
