@@ -29,10 +29,9 @@ function setupCLIenvCE() {
   ibmcloud ce project select -n $PROJECT_NAME
   
   #to use the kubectl commands
-  ibmcloud ce project select -n $PROJECT_NAME --kubecfg 
+  ibmcloud ce project select -n $PROJECT_NAME --kubecfg true
   
-  # NAMESPACE=$(kubectl get namespaces | awk '/NAME/ { getline; print $0;}' | awk '{print $1;}')
-  NAMESPACE=$(ibmcloud ce project get --name $MYPROJECT --output json | sed -n 's|.*"namespace":"\([^"]*\)".*|\1|p')
+  NAMESPACE=$(ibmcloud ce project get --name $PROJECT_NAME --output json | grep "namespace" | awk '{print $2;}' | sed 's/"//g' | sed 's/,//g')
   echo "Namespace: $NAMESPACE"
   kubectl get pods -n $NAMESPACE
 
@@ -352,14 +351,13 @@ echo " web-app (to get the redirect URL for Keycloak)"
 echo "************************************"
 
 deployWebApp
-# ibmcloud ce application events --application web-app
+ibmcloud ce application events --application web-app
 
 echo "************************************"
 echo " keycloak"
 echo "************************************"
 
 deployKeycloak
-# configureKeycloak
 # create realm with redirect url
 reconfigureKeycloak 
 ibmcloud ce application events --application keycloak
@@ -369,21 +367,21 @@ echo " articles"
 echo "************************************"
 
 deployArticles
-# ibmcloud ce application events --application articles
+ibmcloud ce application events --application articles
 
 echo "************************************"
 echo " web-api"
 echo "************************************"
 
 deployWebAPI
-# ibmcloud ce application events --application web-api
+ibmcloud ce application events --application web-api
 
 echo "************************************"
 echo " update web-app"
 echo "************************************"
 
 updateWebApp
-# ibmcloud ce application events --application web-app
+ibmcloud ce application events --application web-app
 
 echo "************************************"
 echo " Verify deployments"
