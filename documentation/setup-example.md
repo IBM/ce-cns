@@ -85,8 +85,10 @@ export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 #### Step 3: Execute following bash automation
 
 > Don't worry, this script may take several minutes.
+> Use ibmcloud command to target IBM Cloud Resouce Group.
 
 ```sh
+ibmcloud target -g [Default]
 cd $ROOT_FOLDER/CE
 bash ce-deploy-apps.sh
 ```
