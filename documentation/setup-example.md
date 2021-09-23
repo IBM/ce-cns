@@ -84,11 +84,24 @@ export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 
 #### Step 3: Execute following bash automation
 
-> Don't worry, this script may take several minutes.
-> Use ibmcloud command to target IBM Cloud Resouce Group.
+> Note: For the execution to the bash script [`ce-deploy-apps.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-deploy-apps.sh) following variables are set to those `default` values:
 
 ```sh
-ibmcloud target -g [Default]
+export PROJECT_NAME=$MYPROJECT #your project name
+export RESOURCE_GROUP=default #the resource group in IBM Cloud you defined during the creation of the project
+export REPOSITORY=tsuedbroecker #the name of the public container repository on Quay
+export REGION="us-south" #the region in IBM Cloud that is used. When you choose Dallas as location during the creation of the project the region is "us-south"
+```
+
+If you plan to use a different configuration, you need ajust these variables to your needs. For more details please visit the bash script: [`ce-deploy-apps.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-deploy-apps.sh). This bash script uses for example the `ibmcloud target -g` command to target `IBM Cloud Resouce Group.
+
+```sh
+ibmcloud target -g $RESOURCE_GROUP
+```
+
+> Don't worry, this script may take several minutes.
+
+```
 cd $ROOT_FOLDER/CE
 bash ce-deploy-apps.sh
 ```
@@ -103,16 +116,7 @@ For a better understanding here are the simplified steps that are carried out in
 6. Deploy `web-api` with the needed `Keycloak` and articles urls as environment variables.
 7. Reconfigure `web-app` with the needed `Keycloak` and web-api urls as environment variables.
 
-For the executon to the bash script are following variables relevant:
-
-```sh
-export PROJECT_NAME=$MYPROJECT #your project name
-export RESOURCE_GROUP=default #the resource group in IBM Cloud you defined during the creation of the project
-export REPOSITORY=tsuedbroecker #the name of the public container repository on Quay
-export REGION="us-south" #the region in IBM Cloud that is used. When you choose Dallas as location during the creation of the project the region is "us-south"
-```
-
-> PS: You can also use the `ce-deploy-apps-secret.sh` script, which does create [secrets](https://cloud.ibm.com/docs/codeengine?topic=codeengine-configmap-secret) for the user and password for the Keycloak container.
+> PS: You can also use the [`ce-deploy-apps-secret.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-deploy-apps-secret.sh) script, which does create [secrets](https://cloud.ibm.com/docs/codeengine?topic=codeengine-configmap-secret) for the user and password for the Keycloak container.
 
 ```sh
 cd $ROOT_FOLDER/CE
