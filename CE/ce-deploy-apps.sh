@@ -32,7 +32,7 @@ function setupCLIenvCE() {
   ibmcloud ce project select -n $PROJECT_NAME
   
   #to use the kubectl commands
-  ibmcloud ce project select -n $PROJECT_NAME --kubecfg true
+  ibmcloud ce project select -n $PROJECT_NAME --kubecfg
   
   # NAMESPACE=$(kubectl get namespaces | awk '/NAME/ { getline; print $0;}' | awk '{print $1;}')
   # NAMESPACE=$(ibmcloud ce project get --name $PROJECT_NAME --output json | sed -n 's|.*"namespace":"\([^"]*\)".*|\1|p')
