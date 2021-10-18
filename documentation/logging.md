@@ -4,7 +4,7 @@ Here we use the [IBM Cloud Log Analysis](https://cloud.ibm.com/docs/log-analysis
 
 ### Create the logging service automatically
 
-You can create the lite service instances for logging and monitoring by using this bash script.
+You can create the lite service instances for logging and monitoring by using this bash script [`ce-create-monitoring-logging-services.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-create-monitoring-logging-services.sh)
 
 ```sh
 cd $ROOT_FOLDER/CE
@@ -25,7 +25,9 @@ bash ce-create-monitoring-logging-services.sh
 
 #### Step 3: Verify the IBM Cloud Log Analysis will be opened in the browser 
 
-### Create an IBM Cloud Log Analysis service manually
+![](images/cns-ce-logging-06.png)
+
+### Create an IBM Cloud Log Analysis service **manually**
 
 #### Step 1: Select `Actions -> Add logging`
 
