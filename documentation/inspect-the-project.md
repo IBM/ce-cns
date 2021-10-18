@@ -25,25 +25,55 @@ Here you find an overview of the currently running applications. (FYI The `Code 
 
 ### Step 4: Open the `web-api` application
 
-Here we find the configurations for the application. 
+Here we see three tabs for the application. 
+
+* Overview
+* Configuration
+* Endpoints
+
+The `overview tab` shows the number of the running instances and the revisons of the configuration for those instances.
+
+![](images/cns-ce-inspect-project-update-01.png)
+
+### Step 5: Inspect the configurations tab
+
+Here we find four tabs used to configure the application instance on `Code Engine`.
 
 * First select the `Code` tab. Here you see our container image reference to the Quay container registry.
 
-![](images/cns-ce-inspect-project-03.png)
+![](images/cns-ce-inspect-project-update-02.png)
 
 * Then select the `Runtime` tab. The configuration for the instances, vCPU, memory and requests.
 
-![](images/cns-ce-inspect-project-04.png)
+![](images/cns-ce-inspect-project-update-03.png)
 
 > _Note:_ For more details about valid vCPU and Memory combinations please visit the documentation [here](https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo) .
 
-* Now select to `Environment variables` tab. 
+* Now select the `Environment variables` tab. 
 
 Here you see the routes for the `wep-api` microservice to setup the connections **internal** `articels` microservice and the external `Keycloak` application.
 
-![](images/cns-ce-inspect-project-05.png)
+![](images/cns-ce-inspect-project-update-04.png)
 
-_Note:_ In following code you see the `Code Engine CLI` invocation for the `web-api` microservice, that is used in the bash script. It reflects what you see in the Code Engine UI.
+* In the  `Command overrides` tab. 
+
+Here you can some details [here](https://cloud.ibm.com/docs/codeengine?topic=codeengine-cmd-args).
+
+![](images/cns-ce-inspect-project-update-06.png)
+
+Short extract of the Code Engine documentation:
+
+> _"These metadata fields are called Entrypoint and Command. For those users who are familiar with Dockerfile, the fields equate to the **ENTRYPOINT and CMD commands**. These two fields contain arrays of strings that are combined to create the command line that is used when you run your container."_
+
+### Step 6: Endpoints tab
+
+Here you can change the `endpoint` visibility. For our `web-api` application we need a public visibility because the application is invoked by our `web-app` frontend.
+
+![](images/cns-ce-inspect-project-update-05.png)
+
+### Step 7: Verify the `Code Engine CLI` application instance configuration
+
+In following code you see the `Code Engine CLI` invocation for the `web-api` microservice, this code is used in the bash script. It reflects what you see in the Code Engine UI.
 
 ```sh
 # Valid vCPU and memory combinations: https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo

@@ -106,7 +106,7 @@ If you plan to use a different configuration, you need ajust these variables to 
 ibmcloud target -g $RESOURCE_GROUP
 ```
 
-### Step 4: Simplified steps of the bash script
+#### Step 4: Simplified steps of the bash script
 
 Here are the simplified steps that are carried out in the bash script using mainly the IBM Cloud `Code Engine CLI`:
 
