@@ -57,13 +57,13 @@ Here you see the routes for the `wep-api` microservice to setup the connections 
 
 * In the  `Command overrides` tab. 
 
-Here you can some details [here](https://cloud.ibm.com/docs/codeengine?topic=codeengine-cmd-args).
-
 ![](images/cns-ce-inspect-project-update-06.png)
 
-Short extract of the Code Engine documentation:
+A short extract of the Code Engine documentation:
 
 > _"These metadata fields are called Entrypoint and Command. For those users who are familiar with Dockerfile, the fields equate to the **ENTRYPOINT and CMD commands**. These two fields contain arrays of strings that are combined to create the command line that is used when you run your container."_
+
+For details  visit the [IBM Cloud documentation](https://cloud.ibm.com/docs/codeengine?topic=codeengine-cmd-args).
 
 ### Step 6: Endpoints tab
 
