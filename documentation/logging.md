@@ -21,11 +21,11 @@ bash ce-create-monitoring-logging-services.sh
 
 ![](images/cns-ce-logging-01.png)
 
-> In case you don't have an existing instance of `IBM Cloud Log Analysis` Code Engine follow steps in `Create an IBM Cloud Log Analysis service manually` or use the bash script.
+> In case you don't have an existing instance of `IBM Cloud Log Analysis` Code Engine follow steps in `Create an IBM Cloud Log Analysis service manually` or use the `bash script`.
 
 #### Step 3: Verify the IBM Cloud Log Analysis will be opened in the browser 
 
-![](images/cns-ce-logging-06.png)
+![](images/cns-ce-logging-00.png)
 
 ### Create an IBM Cloud Log Analysis service **manually**
 
