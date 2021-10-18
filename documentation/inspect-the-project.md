@@ -88,6 +88,14 @@ In following code you see the `Code Engine CLI` invocation for the `web-api` mic
                                 --port 8081
 ```
 
+### Step 8: Estimate cost
+
+You can easily estimate cost for your Code Engine application. 
+Just select `estimate cost` and configure your region, cpu and storage,  estimated monthly runtime for your application and the number of application instances. For more details visit the [IBM Cloud documentation](https://cloud.ibm.com/codeengine/overview).
+
+![](images/cns-ce-inspect-project-update-01.gif)
+
+
 ---
 
 > Congratulations, you have successfully completed this hands-on lab ` Inspect the Code Engine project` of the workshop. Awesome :star:
