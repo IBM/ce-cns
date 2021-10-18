@@ -84,7 +84,14 @@ export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 
 #### Step 3: Execute following bash automation
 
-> Note: For the execution to the bash script [`ce-deploy-apps.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-deploy-apps.sh) following variables are set to those `default` values:
+> Be patient, because the script may take several minutes (_up to 10 min_).
+
+```sh
+cd $ROOT_FOLDER/CE
+bash ce-deploy-apps.sh
+```
+
+> Note: Here are the `default values` for the  [`ce-deploy-apps.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-deploy-apps.sh) script:
 
 ```sh
 export PROJECT_NAME=$MYPROJECT #your project name
@@ -93,20 +100,15 @@ export REPOSITORY=tsuedbroecker #the name of the public container repository on 
 export REGION="us-south" #the region in IBM Cloud that is used. When you choose Dallas as location during the creation of the project the region is "us-south"
 ```
 
-If you plan to use a different configuration, you need ajust these variables to your needs. For more details please visit the bash script: [`ce-deploy-apps.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-deploy-apps.sh). This bash script uses for example the `ibmcloud target -g` command to target `IBM Cloud Resouce Group.
+If you plan to use a different configuration, you need ajust these variables to your needs. For more details please visit the bash script: [`ce-deploy-apps.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-deploy-apps.sh). The bash script uses for example the `ibmcloud target -g` command to target `IBM Cloud Resouce Group`.
 
 ```sh
 ibmcloud target -g $RESOURCE_GROUP
 ```
 
-> Don't worry, this script may take several minutes.
+### Step 4: Simplified steps of the bash script
 
-```
-cd $ROOT_FOLDER/CE
-bash ce-deploy-apps.sh
-```
-
-For a better understanding here are the simplified steps that are carried out in the script using the IBM Cloud `Code Engine CLI`:
+Here are the simplified steps that are carried out in the bash script using mainly the IBM Cloud `Code Engine CLI`:
 
 1. Connect to the `Code Engine project` with the  [Code Engine CLI](https://cloud.ibm.com/docs/codeengine?topic=codeengine-cli) and get the **namespace** for later usage to define the internal route.
 2. Deploy `web-app` to get needed route for the redirect of Keycloak 
@@ -123,7 +125,7 @@ cd $ROOT_FOLDER/CE
 bash ce-deploy-apps-secret.sh
 ```
 
-#### Step 4: Inspect the execution output
+#### Step 5: Inspect the execution output
 
 The following shows an example execution result of the bash script and the last four lines do contain the routes to the applications.
 
@@ -139,7 +141,7 @@ The following shows an example execution result of the bash script and the last 
 
 You can open the example application with the `Web-App` link. Copy the link and open the link in a browser.
 
-#### Step 5: Open the example application in your browser
+#### Step 6: Open the example application in your browser
 
 Use `user: alice` and `password: alice` for the logon.
 
