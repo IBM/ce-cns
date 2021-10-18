@@ -73,7 +73,7 @@ Here you can change the `endpoint` visibility. For our `web-api` application we 
 
 ### Step 7: Verify the `Code Engine CLI` application instance configuration
 
-In following code you see the `Code Engine CLI` invocation for the `web-api` microservice, this code is used in the bash script. It reflects what you see in the Code Engine UI.
+In following code you see the `Code Engine CLI` invocation for the `web-api` microservice, this code is used in the bash script to create a Code Engine application instance. It reflects what you have seen in the [`Code Engine UI`](https://cloud.ibm.com/codeengine/projects).
 
 ```sh
 # Valid vCPU and memory combinations: https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo
