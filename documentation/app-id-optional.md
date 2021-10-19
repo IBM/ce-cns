@@ -34,7 +34,7 @@ cd ce-cns
 ROOT_FOLDER=$(pwd)
 ```
 
-#### Step 2: Now set the environment variable for later usage
+#### (optional) Step 2: Now set the environment variable for later usage
 
 > Only needed, if you haven't done it before.
 
