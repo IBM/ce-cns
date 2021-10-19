@@ -100,7 +100,7 @@ bash appid-ce-clean-up.sh
 
 ---
 
-> Congratulations, you have successfully completed this optional hands-on lab tasks for `Authentication and Authorization with Keycloak and Quarkus` section of the workshop. Awesome :star:
+> Congratulations, you have successfully completed this optional hands-on lab tasks for `Run the example application with App ID` section of the workshop. Awesome :star:
 
 
 
