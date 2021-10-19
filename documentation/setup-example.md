@@ -114,7 +114,7 @@ Here are the simplified steps that are carried out in the bash script using main
 2. Deploy `web-app` to get needed route for the redirect of Keycloak 
 3. Deploy `Keycloak` simply as a container (that's the reason why not scale to zero (stateful)) 
 4. Configure the `Keycloak` realm json file based on the `web-app` url and create realm.
-5. Deploy `articles` microservice is defined as `local cluster` here, we need to know the `namespace`. ([details are related to Knative](https://github.com/knative/serving/issues/7450))
+5. Deploy `articles` microservice which is defined as `local cluster` here, we need to know the `namespace`. ([details are related to Knative](https://github.com/knative/serving/issues/7450))
 6. Deploy `web-api` with the needed `Keycloak` and articles urls as environment variables.
 7. Reconfigure `web-app` with the needed `Keycloak` and web-api urls as environment variables.
 
@@ -125,7 +125,7 @@ cd $ROOT_FOLDER/CE
 bash ce-deploy-apps-secret.sh
 ```
 
-#### Step 5: Inspect the execution output
+#### Step 5: Inspect the output
 
 The following shows an example execution result of the bash script and the last four lines do contain the routes to the applications.
 

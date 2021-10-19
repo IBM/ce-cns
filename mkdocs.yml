@@ -22,6 +22,7 @@ nav:
   - Optional Labs: 
     - 1. Run the example application locally: ./run-application-locally.md
     - 2. Push containers to a container registry: ./push-to-container-registry.md
+    - 3. Use IBM Cloud App ID for the example application: ./app-id-optional.md
   - Additional Resources:
     - Cloud Native Starter example:
        - Cloud-Native-Starter project: https://github.com/IBM/cloud-native-starter
