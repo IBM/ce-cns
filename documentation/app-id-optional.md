@@ -4,7 +4,7 @@ In this optional lab we use for authentication and authorization an [IBM Cloud A
 
 We will create an [IBM Cloud App ID](https://www.ibm.com/cloud/app-id) service instance using a **"lite"** plan, this plan type does not create additional costs for us.
 
-> Currently this lab is not documented very detailed. **It's designed to be a part of a live session.**
+> Currently this lab is not documented very detailed. **It's designed to be a part of a live session.** You find the source code [here](https://github.com/thomassuedbroecker/ce-cns-appid).
 
 ### Architecture
 
