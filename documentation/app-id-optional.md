@@ -29,7 +29,7 @@ Here is a simplified architecture diagram which shows the **Web-App** and the tw
 Insert these commands to clone the GitHub project to the `IBM Cloud Shell`.
 
 ```sh
-git clone https://github.com/thomassuedbroecker/ce-cns.git
+git clone https://github.com/ibm/ce-cns.git
 cd ce-cns
 ROOT_FOLDER=$(pwd)
 ```
