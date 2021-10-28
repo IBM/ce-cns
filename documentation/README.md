@@ -1,4 +1,4 @@
-# Workshop: Deploy a Java microservices application to `IBM Cloud Code Engine`
+# Jumpstart: Deploy a Java Microservices Application to `Code Engine`
 
 ### Objectives
 
