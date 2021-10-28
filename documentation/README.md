@@ -2,8 +2,7 @@
 
 ### Objectives
 
-The workshop addresses the topic containerized applications on `IBM Cloud Code Engine`.
-
+The workshop addresses the topic containerized applications on `IBM Cloud Code Engine`. ([GitHub project](https://github.com/ibm/ce-cns/))
 After you complete this workshop, you'll have a basic understanding of the following:
 
   * Deploy an existing Java microservices `containerized` application example to `Code Engine`
