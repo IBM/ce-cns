@@ -24,6 +24,7 @@ nav:
     - 2. Push containers to a container registry: ./push-to-container-registry.md
     - 3. Use IBM Cloud App ID for the example application: ./app-id-optional.md
   - Additional Resources:
+    - Known issues: ./known-issues.md
     - Cloud Native Starter example:
        - Cloud-Native-Starter project: https://github.com/IBM/cloud-native-starter
        - Cloud-Native-Starter project security: https://github.com/IBM/cloud-native-starter/security
