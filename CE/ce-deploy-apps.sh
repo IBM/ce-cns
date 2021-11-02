@@ -103,6 +103,22 @@ function configureKeycloak() {
 
     echo "Access token : $access_token"
 
+    if [ "$access_token" = "" ]; then
+        echo "------------------------------------------------------------------------"
+        echo "Error:"
+        echo "======"
+        echo ""
+        echo "It seems there is a problem to get the Keycloak access token: ($access_token)"
+        echo "The script exits here!"
+        echo ""
+        echo "Please delete the existing applications in your `Code Engine` project: $PROJECT_NAME"
+        echo "and run this script again."
+        echo ""
+        echo "If the problem persists, please contact thomas.suedbroecker@de.ibm.com or create a GitHub issue."
+        echo "------------------------------------------------------------------------"
+        exit 1
+    if
+
     # Create the realm in Keycloak
     echo "------------------------------------------------------------------------"
     echo "Create the realm in Keycloak"
@@ -113,7 +129,7 @@ function configureKeycloak() {
 
     if [ "$result" = "" ]; then
         echo "------------------------------------------------------------------------"
-        echo "The realm is created."
+        echo "The realm is created. "
         echo "Open following link in your browser:"
         echo "$KEYCLOAK_URL/auth/admin/master/console/#/realms/quarkus"
         echo "------------------------------------------------------------------------"
@@ -150,6 +166,22 @@ function reconfigureKeycloak (){
     access_token=$( curl -d "client_id=$CLIENT_ID" -d "username=$USER" -d "password=$PASSWORD" -d "grant_type=$GRANT_TYPE" "$KEYCLOAK_URL/auth/realms/master/protocol/openid-connect/token" | sed -n 's|.*"access_token":"\([^"]*\)".*|\1|p')
 
     echo "Access token : $access_token"
+
+    if [ "$access_token" = "" ]; then
+        echo "------------------------------------------------------------------------"
+        echo "Error:"
+        echo "======"
+        echo ""
+        echo "It seems there is a problem to get the Keycloak access token: ($access_token)"
+        echo "The script exits here!"
+        echo ""
+        echo "Please delete the existing applications in your `Code Engine` project: $PROJECT_NAME"
+        echo "and run this script again."
+        echo ""
+        echo "If the problem persists, please contact thomas.suedbroecker@de.ibm.com or create a GitHub issue."
+        echo "------------------------------------------------------------------------"
+        exit 1
+    if
 
     # Update the realm in Keycloak
     echo "------------------------------------------------------------------------"
