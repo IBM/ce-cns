@@ -112,15 +112,24 @@ function configureKeycloak() {
     result=$(curl -d @./cns-realm.json -H "Content-Type: application/json" -H "Authorization: bearer $access_token" "$KEYCLOAK_URL/auth/admin/realms")
 
     if [ "$result" = "" ]; then
-    echo "------------------------------------------------------------------------"
-    echo "The realm is created."
-    echo "Open following link in your browser:"
-    echo "$KEYCLOAK_URL/auth/admin/master/console/#/realms/quarkus"
-    echo "------------------------------------------------------------------------"
+        echo "------------------------------------------------------------------------"
+        echo "The realm is created."
+        echo "Open following link in your browser:"
+        echo "$KEYCLOAK_URL/auth/admin/master/console/#/realms/quarkus"
+        echo "------------------------------------------------------------------------"
     else
-    echo "------------------------------------------------------------------------"
-    echo "It seems there is a problem with the realm creation: $result"
-    echo "------------------------------------------------------------------------"
+        echo "------------------------------------------------------------------------"
+        echo "Error:"
+        echo "======"
+        echo "It seems there is a problem with the realm creation: $result"
+        echo "The script exits here!"
+        echo ""
+        echo "Please delete the existing applications in your `Code Engine` project: $PROJECT_NAME"
+        echo "and run this script again."
+        echo ""
+        echo "If the problem persists, please contact thomas.suedbroecker@de.ibm.com or create a GitHub issue."
+        echo "------------------------------------------------------------------------"
+        exit 1
     fi
 }
 
@@ -151,15 +160,24 @@ function reconfigureKeycloak (){
     result=$(curl -d @./$UPDATE_REALM -H "Content-Type: application/json" -H "Authorization: bearer $access_token" "$KEYCLOAK_URL/auth/admin/realms")
 
     if [ "$result" = "" ]; then
-    echo "------------------------------------------------------------------------"
-    echo "The realm is created."
-    echo "Open following link in your browser:"
-    echo "$KEYCLOAK_URL/auth/admin/master/console/#/realms/quarkus"
-    echo "------------------------------------------------------------------------"
+        echo "------------------------------------------------------------------------"
+        echo "The realm is updated."
+        echo "Open following link in your browser:"
+        echo "$KEYCLOAK_URL/auth/admin/master/console/#/realms/quarkus"
+        echo "------------------------------------------------------------------------"
     else
-    echo "------------------------------------------------------------------------"
-    echo "It seems there is a problem with the realm creation: $result"
-    echo "------------------------------------------------------------------------"
+        echo "------------------------------------------------------------------------"
+        echo "Error:"
+        echo "======"
+        echo "It seems there is a problem with the realm update: $result"
+        echo "The script exits here!"
+        echo ""
+        echo "Please delete the existing applications in your `Code Engine` project: $PROJECT_NAME"
+        echo "and run this script again."
+        echo ""
+        echo "If the problem persists, please contact thomas.suedbroecker@de.ibm.com or create a GitHub issue."
+        echo "------------------------------------------------------------------------"
+        exit 1
     fi
 }
 
