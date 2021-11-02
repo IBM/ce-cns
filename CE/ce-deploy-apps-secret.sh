@@ -68,7 +68,7 @@ function createSecrets() {
     
     ibmcloud ce secret create --name keycloak.user --from-literal "KEYCLOAK_USER=admin"
     ibmcloud ce secret create --name keycloak.password --from-literal "KEYCLOAK_PASSWORD=admin"
-    
+
 }
 
 function configureKeycloak() {
@@ -85,6 +85,22 @@ function configureKeycloak() {
     access_token=$( curl -d "client_id=$CLIENT_ID" -d "username=$USER" -d "password=$PASSWORD" -d "grant_type=$GRANT_TYPE" "$KEYCLOAK_URL/auth/realms/master/protocol/openid-connect/token" | sed -n 's|.*"access_token":"\([^"]*\)".*|\1|p')
 
     echo "Access token : $access_token"
+
+    if [ "$access_token" = "" ]; then
+        echo "------------------------------------------------------------------------"
+        echo "Error:"
+        echo "======"
+        echo ""
+        echo "It seems there is a problem to get the Keycloak access token: ($access_token)"
+        echo "The script exits here!"
+        echo ""
+        echo "Please delete the existing applications in your `Code Engine` project: $PROJECT_NAME"
+        echo "and run this script again."
+        echo ""
+        echo "If the problem persists, please contact `thomas.suedbroecker@de.ibm.com `or create a GitHub issue."
+        echo "------------------------------------------------------------------------"
+        exit 1
+    fi
 
     # Create the realm in Keycloak
     echo "------------------------------------------------------------------------"
@@ -125,24 +141,49 @@ function reconfigureKeycloak (){
 
     echo "Access token : $access_token"
 
+    if [ "$access_token" = "" ]; then
+        echo "------------------------------------------------------------------------"
+        echo "Error:"
+        echo "======"
+        echo ""
+        echo "It seems there is a problem to get the Keycloak access token: ($access_token)"
+        echo "The script exits here!"
+        echo ""
+        echo "Please delete the existing applications in your `Code Engine` project: $PROJECT_NAME"
+        echo "and run this script again."
+        echo ""
+        echo "If the problem persists, please contact `thomas.suedbroecker@de.ibm.com` or create a GitHub issue."
+        echo "------------------------------------------------------------------------"
+        exit 1
+    fi
+
     # Update the realm in Keycloak
     echo "------------------------------------------------------------------------"
-    echo "Create the realm in Keycloak"
+    echo "Update the realm in Keycloak"
     echo "------------------------------------------------------------------------"
     echo ""
 
     result=$(curl -d @./$UPDATE_REALM -H "Content-Type: application/json" -H "Authorization: bearer $access_token" "$KEYCLOAK_URL/auth/admin/realms")
 
     if [ "$result" = "" ]; then
-    echo "------------------------------------------------------------------------"
-    echo "The realm is created."
-    echo "Open following link in your browser:"
-    echo "$KEYCLOAK_URL/auth/admin/master/console/#/realms/quarkus"
-    echo "------------------------------------------------------------------------"
+        echo "------------------------------------------------------------------------"
+        echo "The realm is updated."
+        echo "Open following link in your browser:"
+        echo "$KEYCLOAK_URL/auth/admin/master/console/#/realms/quarkus"
+        echo "------------------------------------------------------------------------"
     else
-    echo "------------------------------------------------------------------------"
-    echo "It seems there is a problem with the realm creation: $result"
-    echo "------------------------------------------------------------------------"
+        echo "------------------------------------------------------------------------"
+        echo "Error:"
+        echo "======"
+        echo "It seems there is a problem with the realm update: $result"
+        echo "The script exits here!"
+        echo ""
+        echo "Please delete the existing applications in your `Code Engine` project: $PROJECT_NAME"
+        echo "and run this script again."
+        echo ""
+        echo "If the problem persists, please contact `thomas.suedbroecker@de.ibm.com` or create a GitHub issue."
+        echo "------------------------------------------------------------------------"
+        exit 1
     fi
 }
 

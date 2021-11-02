@@ -185,7 +185,7 @@ function reconfigureKeycloak (){
 
     # Update the realm in Keycloak
     echo "------------------------------------------------------------------------"
-    echo "Create the realm in Keycloak"
+    echo "Update the realm in Keycloak"
     echo "------------------------------------------------------------------------"
     echo ""
 
