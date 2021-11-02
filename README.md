@@ -1,6 +1,10 @@
 # [Jumpstart: Deploy a Java Microservices Application to `Code Engine`](https://ibm.github.io/ce-cns)
 
-Please follow this **[link](https://ibm.github.io/ce-cns) to access the full workshop documentation** and here is the link to the documentation on [IBM Developer](https://developer.ibm.com/tutorials/deploy-a-java-microservices-application-to-ibm-cloud-code-engine/#labs).
+Please follow this **[link](https://ibm.github.io/ce-cns) to access the full workshop documentation**:
+
+[![](documentation/images/button-documentation.png)](https://ibm.github.io/ce-cns)
+
+and here is the link to the documentation on [IBM Developer](https://developer.ibm.com/tutorials/deploy-a-java-microservices-application-to-ibm-cloud-code-engine/#labs).
 
 > FYI: The workshop documententation uses [GitHub Pages](https://pages.github.com/) with [MkDocs](https://www.mkdocs.org/please). For more details please visit "[How to setup MkDocs?](https://suedbroecker.net/2021/01/25/how-to-install-mkdocs-on-mac-and-setup-the-integration-to-github-pages/)".
 
