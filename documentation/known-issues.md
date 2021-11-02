@@ -5,5 +5,5 @@ When you get the following error message from Keycloak, when you invoked the `we
  
 The example application needs to be setup again.
 
-![](images/issue01.png)
+![](./images/issue01.png)
 
