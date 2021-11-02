@@ -19,3 +19,9 @@ The following diagram shows the architecture of the example application. There i
 The image below shows the dependencies of the example:
 
 ![](documentation/images/cns-ce-architecture.png)
+
+## Open the full workshop documentation
+
+Please follow this **[link](https://ibm.github.io/ce-cns) to access the full workshop documentation**:
+
+[![](documentation/images/button-documentation.png)](https://ibm.github.io/ce-cns)
