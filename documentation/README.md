@@ -36,7 +36,7 @@ Here is a `1-hour` YouTube `live stream` on [IBM Developer](https://www.youtube.
 
 > This `workshop` is related to the [Cloud Native Starter](https://github.com/ibm/cloud-native-starter) project. In the workshop we use a customized version of the [security application example](https://developer.ibm.com/languages/java/tutorials/secure-your-java-microservices-application-workshop/). 
 
-The example application simply shows articles protected with an `Identity and Access Manegement`.
+The example application simply shows articles protected with an `Identity and Access Management`.
 In the following picture you see the frontend with the articles and the valid user `alice` is logged on.
 
 ![](images/cns-ce-example-application-00.png)
@@ -67,7 +67,7 @@ In the following table you see the **application**/container, the exposed **rout
 | web-api  | external | yes | yes | Quay | 0.5 | 1 GB | 0 | 1 |
 | **articles** | **internal** | no (mTLS coming sone) | yes | Quay | 0.25 | 0.5G GB | 0 | 1 |
 
-The `Keycloak` application for the `Identity and Access Management` isn't configured to `scale to zero`, because the application is `stateful` and contains the realm configuration, which will be delete, if you would restart the application.
+The `Keycloak` application for the `Identity and Access Management` isn't configured to `scale to zero`, because the application is `stateful` and contains the realm configuration, which will be deleted, if you would restart the application.
 
 _Note:_ The project also contains the source code, that you can use to customize to your an own version of the microservices based example application.
 
