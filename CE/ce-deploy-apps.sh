@@ -117,7 +117,7 @@ function configureKeycloak() {
         echo "If the problem persists, please contact thomas.suedbroecker@de.ibm.com or create a GitHub issue."
         echo "------------------------------------------------------------------------"
         exit 1
-    if
+    fi
 
     # Create the realm in Keycloak
     echo "------------------------------------------------------------------------"
@@ -181,7 +181,7 @@ function reconfigureKeycloak (){
         echo "If the problem persists, please contact thomas.suedbroecker@de.ibm.com or create a GitHub issue."
         echo "------------------------------------------------------------------------"
         exit 1
-    if
+    fi
 
     # Update the realm in Keycloak
     echo "------------------------------------------------------------------------"
