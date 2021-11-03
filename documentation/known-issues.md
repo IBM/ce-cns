@@ -1,5 +1,5 @@
 # Known issues
-### Error message from Keycloak  appears, when you invoke the `web-app`
+### 1. Error message from Keycloak  appears, when you invoke the `web-app`
 
 When you get the following error message from Keycloak, after you invoked the `web-app` url, something went wrong during the Keycloak configuration at the setup. One reason could be, that the `Keycloak` container was restarted after the `Keycloak` configuration and the container lost the needed `realm` configuration for the example application.
  
@@ -19,7 +19,7 @@ export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 cd $ROOT_FOLDER/CE
 bash ce-reconfigure-keycloak.sh
 ```
-### Timeout message appears, after loggin in 
+### 2. Timeout message appears, after loggin in 
 
 If the following error message persists after refreshing your Browser multiple times, we will ensure that the `articles` service will run continously with one instance.
 
@@ -41,7 +41,7 @@ https://cloud.ibm.com/codeengine/projects
 
 ![](images/issue-02.PNG)
 
-### Step 4: Open the `Configuration` tab, and select `Runtime`.
+#### Step 4: Open the `Configuration` tab, and select `Runtime`.
 
 ![](images/issue-03.PNG)
 
