@@ -19,3 +19,48 @@ export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 cd $ROOT_FOLDER/CE
 bash ce-reconfigure-keycloak.sh
 ```
+### Timeout message appears, after loggin in 
+
+If the following error message persists after refreshing your Browser multiple times, we will ensure that the `articles` service will run continously with one instance.
+
+![](images/cns-ce-example-application-03.png)
+
+
+To fix the issue, we will change the configuration of the `articles` service.
+
+
+#### Step 1: Open the following link to access your projects and from there click on the project you created.
+
+https://cloud.ibm.com/codeengine/projects
+ 
+> Note: Your project should be named `cloud-native-starter-[YOUR-EXTENTION]`
+
+#### Step 2: Click on your project and select `Applications`.
+
+![](images/cns-ce-inspect-project-02.png)
+
+
+#### Step 3: Open the `articles` application
+
+![](images/issue-02.png)
+
+### Step 4: Open the `Configuration` tab, and select `Runtime`.
+
+
+![](images/issue-03.png)
+
+#### Step 5: Click on `Edit and create new revision`
+
+Now you change the `Min number of instances` from 0 to 1. This ensures, that the `articles` service is permanently available for the `web-api` service.
+
+![](images/issue-04.png)
+
+
+#### Step 6: Press the `Save and create` Button
+
+This creates a new configuration for the `articles` application as you can see in the `Overview` tab under `Configuration revisions`.
+
+
+![](images/issue-05.png)
+
+

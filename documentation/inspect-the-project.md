@@ -43,7 +43,7 @@ Here we find four tabs used to configure the application instance on `Code Engin
 
 ![](images/cns-ce-inspect-project-update-02.png)
 
-* Then select the `Runtime` tab. The configuration for the instances, vCPU, memory and requests.
+* Then select the `Runtime` tab. It displays the configuration for the instances, vCPU, memory and requests.
 
 ![](images/cns-ce-inspect-project-update-03.png)
 
