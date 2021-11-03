@@ -18,10 +18,10 @@ Here is the local architecture whichs shows the **Web-App** and the two microser
 The gif shows the logon to the example web frontend application. This is the simplified sequence which happens in the background:
 
 1. When we invoke the web frontend on `<http://localhost:8081> we will be routed to login dialog provided by the Keyloak server.
-2. After the successfully Keycloak authentication we will be redirected to the web frontend and the frontend gets an access-token.
+2. After the successfull Keycloak authentication we will be redirected to the web frontend and the frontend gets an access-token.
 3. The access-token contains the needed information for the authorization at the Java microservice Web-API and the user information.
 4. The web frontend extracts and displays the username.
-5. Then the web fronted uses the access-token to invoke the Web-API Microservice endpoint to get the articles and displays the Articles.
+5. Then the web fronted uses the access-token to invoke the Web-API Microservice endpoint to get the articles and displays them.
 
 ![](images/application-sample.gif)
 
@@ -61,7 +61,7 @@ _Note:_ We use here
 
 #### Step 2: Import the existing realm configuration
 
-1. Open the Keycloak in a browser select the Administration Console
+1. Open the Keycloak in a browser and select the Administration Console
 
   Use following URL:
 
@@ -130,7 +130,7 @@ yarn serve
 
 #### Step 1: Configure web-api
 
-When we run the example application locally, we don't need to change source code for the **web-api** microservce.
+When we run the example application locally, we don't need to change the source code for the **web-api** microservce.
 
 ```sh
 cd $ROOT_FOLDER/code/web-api/src/main/resources
@@ -167,7 +167,7 @@ mvn clean package quarkus:dev
 
 #### Step 1: Configure articles 
 
-When you run the articles microservice locally ensure you have uncomment `quarkus.http.port=8083` and `#quarkus.http.port=8080` commented out.
+When you run the articles microservice locally ensure you have uncommented `quarkus.http.port=8083` and `#quarkus.http.port=8080` commented out.
 
 ```sh
 cd $ROOT_FOLDER/code/articles/src/main/resources
