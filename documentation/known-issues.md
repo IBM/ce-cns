@@ -25,9 +25,7 @@ If the following error message persists after refreshing your Browser multiple t
 
 ![](images/cns-ce-example-application-03.png)
 
-
 To fix the issue, we will change the configuration of the `articles` service.
-
 
 #### Step 1: Open the following link to access your projects and from there click on the project you created.
 
@@ -39,13 +37,11 @@ https://cloud.ibm.com/codeengine/projects
 
 ![](images/cns-ce-inspect-project-02.png)
 
-
 #### Step 3: Open the `articles` application
 
 ![](images/issue-02.PNG)
 
 ### Step 4: Open the `Configuration` tab, and select `Runtime`.
-
 
 ![](images/issue-03.PNG)
 
@@ -55,11 +51,9 @@ Now you change the `Min number of instances` from 0 to 1. This ensures, that the
 
 ![](images/issue-04.PNG)
 
-
 #### Step 6: Press the `Save and create` Button
 
 This creates a new configuration for the `articles` application as you can see in the `Overview` tab under `Configuration revisions`.
-
 
 ![](images/issue-05.PNG)
 
