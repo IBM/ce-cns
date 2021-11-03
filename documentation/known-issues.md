@@ -42,18 +42,18 @@ https://cloud.ibm.com/codeengine/projects
 
 #### Step 3: Open the `articles` application
 
-![](images/issue-02.png)
+![](images/issue-02.PNG)
 
 ### Step 4: Open the `Configuration` tab, and select `Runtime`.
 
 
-![](images/issue-03.png)
+![](images/issue-03.PNG)
 
 #### Step 5: Click on `Edit and create new revision`
 
 Now you change the `Min number of instances` from 0 to 1. This ensures, that the `articles` service is permanently available for the `web-api` service.
 
-![](images/issue-04.png)
+![](images/issue-04.PNG)
 
 
 #### Step 6: Press the `Save and create` Button
@@ -61,6 +61,6 @@ Now you change the `Min number of instances` from 0 to 1. This ensures, that the
 This creates a new configuration for the `articles` application as you can see in the `Overview` tab under `Configuration revisions`.
 
 
-![](images/issue-05.png)
+![](images/issue-05.PNG)
 
 
