@@ -157,6 +157,8 @@ Just refresh the browser and then you should see following page.
 
  ![](images/cns-ce-example-application-04.png)
 
+ If the issue persists, please refer to the [known issues](https://ibm.github.io/ce-cns/known-issues/) page.
+
 ---
 
 > Congratulations, you have successfully completed this hands-on lab `Setup the example application` of the workshop. Awesome :star:
