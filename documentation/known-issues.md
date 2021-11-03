@@ -21,29 +21,46 @@ bash ce-reconfigure-keycloak.sh
 ```
 ### Timeout message appears, after loggin in 
 
-If, after logging in, you see the following error message, usually the error fixes itself after refreshing your Browser.
+If the following error message persists after refreshing your Browser multiple times, we will ensure that the `articles` service will run continously with one instance.
 
 ![](images/cns-ce-example-application-03.png)
 
-If refreshing your Browser didn't fix the issue you can force the `articles` Application to deploy manually.
 
-Open the following link to access your projects and from there click on the project you created.
+To fix the issue, we will change the configuration of the `articles` service.
+
+
+#### Step 1: Open the following link to access your projects and from there click on the project you created.
 
 https://cloud.ibm.com/codeengine/projects
  
 > Note: Your project should be named `cloud-native-starter-[YOUR-EXTENTION]`
 
+#### Step 2: Click on your project and select `Applications`.
+
 ![](images/cns-ce-inspect-project-02.png)
 
-After you click on `articles`, it should look like in the following picture.
 
-![](images/cns-ce-inspect-project-update-01.png)
+#### Step 3: Open the `articles` application
 
-Fom there, open the `Configuration` tab, and select `Runtime`.
+![](images/issue-02.png)
 
-![](images/cns-ce-inspect-project-update-03.png)
+### Step 4: Open the `Configuration` tab, and select `Runtime`.
 
-Now you click on `Edit and create new revision`, and change the `Min number of instances` from zero to one. This ensures, that there is always at least one instance of `articles` running, which prevents the timeout error from appearing.
 
-Afterwards, all you need to do is to press the `Save and create` Button in order to apply your changes.
+![](images/issue-03.png)
+
+#### Step 5: Click on `Edit and create new revision`
+
+Now you change the `Min number of instances` from 0 to 1. This ensures, that the `articles` service is permanently available for the `web-api` service.
+
+![](images/issue-04.png)
+
+
+#### Step 6: Press the `Save and create` Button
+
+This creates a new configuration for the `articles` application as you can see in the `Overview` tab under `Configuration revisions`.
+
+
+![](images/issue-05.png)
+
 

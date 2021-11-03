@@ -52,7 +52,7 @@ Now you use the `IBM Cloud Log Analysis` service.
 
 ### Configure a filter for the logging
 
-#### Step 1: Select `Code Engine` in the sources tab
+#### Step 1: Select `Code Engine` in the `Sources` tab
 
 ![](images/cns-ce-logging-02.png)
 

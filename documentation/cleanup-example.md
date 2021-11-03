@@ -1,7 +1,7 @@
 # Lab 5: Cleanup the project
 
 We will delete all applications from your `Code Engine` project.
-Remember, the Keycloak application for the `Identity and Access Management` isn't configured to `scale to zero`, because the application is `stateful` and contains the realm configuration, which will be deleted, if you would restart the application.
+Remember, the Keycloak application for the `Identity and Access Management` isn't configured to `scale to zero`, because the application is `stateful` and contains the realm configuration, which will be deleted, if you restart the application.
 Here we just delete all applications to avoid additional costs for you. 
 
 > _Note:_ You can also use the UI, in that Lab we use a bash script using the [IBM Cloud Code Engine CLI](https://cloud.ibm.com/docs/codeengine?topic=codeengine-cli)
@@ -43,7 +43,7 @@ cd $ROOT_FOLDER/CE
 export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 ```
 
-#### Step 3: Execute the following bash automation
+#### Step 5: Execute following bash automation
 
 ```sh
 bash ce-remove-apps.sh
@@ -58,7 +58,7 @@ export REPOSITORY=tsuedbroecker #the name of the public container repository on 
 export REGION="us-south" #the region with is used when you choose Dallas as location during the creation of the project
 ```
 
-#### Step 4: Inspect the execution output
+#### Step 6: Inspect the execution output
 
 The following shows an example execution result of the bash script.
 
