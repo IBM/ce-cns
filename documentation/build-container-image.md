@@ -7,7 +7,7 @@ In this optional lab we will build and push the `web-app` container image the [I
 
 > Please visit the [IBM Cloud Registry catalog for the current pricing](https://cloud.ibm.com/registry/catalog).
 
-After the creation of the `web-app` container image and saved to the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog), we simply can replace the `Container image reference` for the `web-app` application in Code Engine in a new configuration. The following image shows a new `Container image reference` value `us.icr.io/cns-code-engine/web-app-image:v1` inside a newly created configuration `web-app-00004`.
+After the creation of the `web-app` container image and when the image is saved in the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog), we simply can replace the `Container image reference` for the `web-app` application in Code Engine in a new configuration. The following image shows a new `Container image reference` value `us.icr.io/cns-code-engine/web-app-image:v1` inside a newly created configuration `web-app-00004`.
 
    ![](images/ibm-ce-container-build-10.png)
 
