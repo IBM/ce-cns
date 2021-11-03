@@ -13,7 +13,7 @@ Keycloak needs to be reconfigured.
 export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 ```
 
-* Execute the `ce-reconfigure-keycloak.sh` bash script
+* Execute the [`ce-reconfigure-keycloak.sh`](https://github.com/ibm/ce-cns/blob/master/CE/ce-reconfigure-keycloak.sh) bash script
 
 ```sh
 cd $ROOT_FOLDER/CE
