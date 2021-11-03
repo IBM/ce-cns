@@ -31,7 +31,7 @@ bash ce-create-monitoring-logging-services.sh
 
 #### Step 1: Select `Actions -> Add logging`
 
-In case you don't have an existing instance of `IBM Cloud Log Analysis` Code Engine will automatically guide you to create a `lite plan` instance, when you select `Actions -> Add logging`.
+In case you don't have an existing instance of `IBM Cloud Log Analysis`, Code Engine will automatically guide you to create a `lite plan` instance, when you select `Actions -> Add logging`.
 
 ![](images/cns-ce-logging-04.png)
 
@@ -43,7 +43,7 @@ Name the service instance `IBMCloudLogging-Code-Engine` and press `Create`.
 
 #### Step 3: Refresh your browser with your Code Engine project.
  
-When the `IBM Cloud Log Analysis` is ready and you select `Actions -> Add logging` again, following dialog will appear.
+When the `IBM Cloud Log Analysis` is ready and you select `Actions -> Add logging` again, the following dialog will appear.
 In this dialog you select your just created `IBM Cloud Log Analysis` service instance with the name `IBMCloudLogging-Code-Engine`.
 
 ![](images/cns-ce-logging-06.png)
@@ -52,7 +52,7 @@ Now you use the `IBM Cloud Log Analysis` service.
 
 ### Configure a filter for the logging
 
-#### Step 1: Select from Sources `Code Engine`
+#### Step 1: Select `Code Engine` in the sources tab
 
 ![](images/cns-ce-logging-02.png)
 

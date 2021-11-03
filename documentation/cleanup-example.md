@@ -1,10 +1,10 @@
 # Lab 5: Cleanup the project
 
 We will delete all applications from your `Code Engine` project.
-Remember, the Keycloak application for the `Identity and Access Management` isn't configured to `scale to zero`, because the application is `stateful` and contains the realm configuration, which will be delete, if you would restart the application.
+Remember, the Keycloak application for the `Identity and Access Management` isn't configured to `scale to zero`, because the application is `stateful` and contains the realm configuration, which will be deleted, if you would restart the application.
 Here we just delete all applications to avoid additional costs for you. 
 
-> _Note:_ You can also us the UI, in that Lab we use a bash script using the [IBM Cloud Code Engine CLI](https://cloud.ibm.com/docs/codeengine?topic=codeengine-cli)
+> _Note:_ You can also use the UI, in that Lab we use a bash script using the [IBM Cloud Code Engine CLI](https://cloud.ibm.com/docs/codeengine?topic=codeengine-cli)
 
 #### Step 1: Open the `IBM Cloud Shell`
 
@@ -12,7 +12,7 @@ Use following link to directly open the `IBM Cloud Shell`.
 
 <https://cloud.ibm.com/shell>
 
-In your browser, login to the [IBM Cloud](https://cloud.ibm.com) Dashboard and open the IBM Cloud Shell from here:
+Alternatively, you can open the IBM Cloud Shell in your Browser by logging in to the [IBM Cloud](https://cloud.ibm.com) Dashboard and opening it from there.
 
 ![](images/cns-ce-cloud-shell-01.png)
 
@@ -25,8 +25,8 @@ Now you are logged on with your IBM Cloud account.
 
 #### Step 3: (Optional) Clone the GitHub project to the `IBM Cloud Shell` 
 
-In case your `IBM Cloud Shell` **session has expired** it cloud be that the cloned project was deleted.
-Then you need to clone the project again, because we will use a bash script for the deletion of the project.
+In case your `IBM Cloud Shell` **session has expired** it might be possible that the cloned project was deleted.
+If this happened, you need to clone the project again, because we will be using a bash script for the deletion of the project.
 
 ```sh
 git clone https://github.com/thomassuedbroecker/ce-cns.git
@@ -43,7 +43,7 @@ cd $ROOT_FOLDER/CE
 export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 ```
 
-#### Step 3: Execute following bash automation
+#### Step 3: Execute the following bash automation
 
 ```sh
 bash ce-remove-apps.sh
