@@ -1,12 +1,15 @@
 # Optional Lab 4: Use Code Engine to build a container image
 
-In this optional lab we will build and push the `web-app` container image the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog).
-The [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog) has a free lite plan with limited resources of Storage (Gigabyte-Months):
+In this optional lab we will build and push the `web-app` container image the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog). The [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog) has a free lite plan with limited resources of Storage (Gigabyte-Months):
 
  * 0.5 GB free per month and pull traffic (Gigabytes) 
  * 5 GB free per month. 
 
-Please visit the [IBM Cloud Registry catalog for the current pricing](https://cloud.ibm.com/registry/catalog).
+> Please visit the [IBM Cloud Registry catalog for the current pricing](https://cloud.ibm.com/registry/catalog).
+
+After the creation of the `web-app` container image and saved to the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog), we simply can replace the `Container image reference` for the `web-app` application in Code Engine in a new configuration. The following image shows a new `Container image reference` value `us.icr.io/cns-code-engine/web-app-image:v1` inside a newly created configuration `web-app-00004`.
+
+   ![](images/ibm-ce-container-build-10.png)
 
 ### Step 1: Create an IBM Cloud Container image `Namespace`
 
