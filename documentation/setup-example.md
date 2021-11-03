@@ -9,14 +9,14 @@ Open this [link](https://ibm.biz/BdfXAn) and follow the guided steps.
 `Code Engine` has a `free tier` per month and we expect, if you haven't used that `free tier` in current month, you can execute the workshop without creating any additional costs. For the monitoring and logging we will use free `lite plans` for the service instances of [IBM Cloud Monitoring](https://cloud.ibm.com/docs/monitoring?topic=monitoring-getting-started#getting-started) and 
  [IBM Cloud Log Analysis](https://cloud.ibm.com/docs/log-analysis?topic=log-analysis-getting-started#getting-started).
 
-Here you find the actual [`Code Engine` pricing](https://www.ibm.com/cloud/code-engine/pricing).
+Here you can find the actual [`Code Engine` pricing](https://www.ibm.com/cloud/code-engine/pricing).
 The image blow shows a screen shot from `26. May 2021` of the `free tier`.
 
 ![](images/cns-ce-pricing-20210526.png)
 
 ### Create `Code Engine` project
 
-#### Step 1: Logon to IBM Cloud and navigate to the Code Engine projects
+#### Step 1: Log on to IBM Cloud and navigate to the Code Engine projects
 
 Use following link to directly navigate to the Code Engine projects in IBM Cloud.
 
@@ -28,7 +28,7 @@ Use following link to directly navigate to the Code Engine projects in IBM Cloud
 
 #### Step 3: Create a `Code Engine` project called `cloud-native-starter-[YOUR-EXTENTION]`
 
-Enter following values and select create and wait until your project is created.
+Enter following values, select create and wait until your project is created.
 
 * Location      : `Dallas`
 * Name          : `cloud-native-starter-[YOUR-EXTENTION]` (The name must be unique in the in Cloud Location `Dallas`)
@@ -50,7 +50,7 @@ Use following link to directly open the `IBM Cloud Shell`.
 
 <https://cloud.ibm.com/shell>
 
-In your browser, login to the [IBM Cloud](https://cloud.ibm.com) Dashboard and open the IBM Cloud Shell from here:
+In your browser, log in to the [IBM Cloud](https://cloud.ibm.com) Dashboard and open the IBM Cloud Shell from here:
 
 ![](images/cns-ce-cloud-shell-01.png)
 
@@ -115,7 +115,7 @@ Here are the simplified steps that are carried out in the bash script using main
 3. Deploy `Keycloak` simply as a container (that's the reason why not scale to zero (stateful)) 
 4. Configure the `Keycloak` realm json file based on the `web-app` url and create realm.
 5. Deploy `articles` microservice which is defined as `local cluster` here, we need to know the `namespace`. ([details are related to Knative](https://github.com/knative/serving/issues/7450))
-6. Deploy `web-api` with the needed `Keycloak` and articles urls as environment variables.
+6. Deploy `web-api` with the needed `Keycloak` and `articles` urls as environment variables.
 7. Reconfigure `web-app` with the needed `Keycloak` and web-api urls as environment variables.
 
 > PS: You can also use the [`ce-deploy-apps-secret.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-deploy-apps-secret.sh) script, which does create [secrets](https://cloud.ibm.com/docs/codeengine?topic=codeengine-configmap-secret) for the user and password for the Keycloak container.
@@ -148,6 +148,8 @@ Use `user: alice` and `password: alice` for the logon.
 ![](images/cns-ce-example-application-02.png)
 
 > Because of scale to zero it could be that the first invocation of the articles cloud take longer. 
+
+If instead of a Login-Screen you get a "We are sorry, page not found" error, please refer to the [known issues](https://ibm.github.io/ce-cns/known-issues/) page.
  
 ![](images/cns-ce-example-application-03.png)
  
