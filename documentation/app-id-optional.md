@@ -1,6 +1,6 @@
 # Optional Lab 3: Run the example application with App ID
 
-In this optional lab we use for authentication and authorization an [IBM Cloud App ID](https://www.ibm.com/cloud/app-id) service instance.
+In this optional lab we use an [IBM Cloud App ID](https://www.ibm.com/cloud/app-id) service instance for authentication and authorization .
 
 We will create an [IBM Cloud App ID](https://www.ibm.com/cloud/app-id) service instance using a **"lite"** plan, this plan type does not create additional costs for us.
 
@@ -38,7 +38,7 @@ ROOT_FOLDER=$(pwd)
 
 > Only needed, if you haven't done it before.
 
-> REMEMBER! Your Code Engine project name `cloud-native-starter-[YOUR-EXTENTION]`
+> REMEMBER! Your Code Engine project name is `cloud-native-starter-[YOUR-EXTENTION]`
 
 ```sh
 export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]

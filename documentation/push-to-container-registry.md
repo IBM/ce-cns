@@ -89,7 +89,7 @@ cd $ROOT_FOLDER/ce
 nano ce-deploy-apps.sh
 ``` 
 
-2. In case you have just change the repository name, you only have to replace `tsuedbroecker` with your value and it should work.
+2. In case you have just changed the repository name, you only have to replace `tsuedbroecker` with your value and it should work.
 
 ```sh
 ...
