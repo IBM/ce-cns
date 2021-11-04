@@ -29,7 +29,7 @@ echo $ROOT_PATH
 
 ### Step 3: Configure articles 
 
-When you run the articles microservice on CE ensure you have uncomment `quarkus.http.port=8080` and `#quarkus.http.port=8083` commented out.
+When you run the articles microservice on CE ensure you have uncommented `quarkus.http.port=8080` and `#quarkus.http.port=8083` commented out.
 
 ```sh
 cd $ROOT_FOLDER/code/articles/src/main/resources
@@ -74,13 +74,13 @@ bash quay-build-and-push.sh
 
 ### Step 6: Verify the public access for your containers
 
-Visit your repository on [Red Hat Quay.io](https://quay.io) and very your container are available for public usage. This is only the case if you going to run the same setup as given in `Lab 1: Setup the example application`.
+Visit your repository on [Red Hat Quay.io](https://quay.io) and verify your containers are available for public usage. This is only the case if you are going to run the same setup as given in `Lab 1: Setup the example application`.
 
 ![](images/quay-public.png)
 
 ### Step 7: Update the `ce-deploy-apps.sh` bash script
 
-Now you have to refect the changes you made for the container registry in the `ce-deploy-apps.sh`, in case if you plan to use this bash script to deploy your containers to `Code Engine`.
+Now you have to reflect the changes you made for the container registry in the `ce-deploy-apps.sh`, if you plan to use this bash script to deploy your containers to `Code Engine`.
 
 1. Open the bash script with an editor
 
@@ -89,7 +89,7 @@ cd $ROOT_FOLDER/ce
 nano ce-deploy-apps.sh
 ``` 
 
-2. In case you have just change the repository name, you only have to replace `tsuedbroecker` with your value and it should work.
+2. In case you have just changed the repository name, you only have to replace `tsuedbroecker` with your value and it should work.
 
 ```sh
 ...
