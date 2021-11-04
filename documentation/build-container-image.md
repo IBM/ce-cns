@@ -1,13 +1,13 @@
 # Optional Lab 4: Use Code Engine to build a container image
 
-In this optional lab we will build and push the `web-app` container image the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog). The [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog) has a free lite plan with limited resources of Storage (Gigabyte-Months):
+In this optional lab we will build and push the `web-app` container image to the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog). The [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog) has a free lite plan with limited resources of Storage (Gigabyte-Months):
 
  * 0.5 GB free per month and pull traffic (Gigabytes) 
  * 5 GB free per month. 
 
 > Please visit the [IBM Cloud Registry catalog for the current pricing](https://cloud.ibm.com/registry/catalog).
 
-After the creation of the `web-app` container image and when the image is saved in the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog), we simply can replace the `Container image reference` for the `web-app` application in Code Engine in a new configuration. The following image shows a new `Container image reference` value `us.icr.io/cns-code-engine/web-app-image:v1` inside a newly created configuration `web-app-00004`.
+After the creation of the `web-app` container image and when the image is saved in the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog), we can simply replace the `Container image reference` for the `web-app` application in Code Engine in a new configuration. The following image shows a new `Container image reference` value `us.icr.io/cns-code-engine/web-app-image:v1` inside a newly created configuration `web-app-00004`.
 
    ![](images/ibm-ce-container-build-10.png)
 
@@ -64,7 +64,7 @@ After the creation of the `web-app` container image and when the image is saved 
 
     ![](images/ibm-ce-registry-access-05.png)
 
- 7. Go back to the `Registry access` tab and insert the copied `IBM Cloud API key` and press `Create`
+ 7. Go back to the `Registry access` tab, insert the copied `IBM Cloud API key` and press `Create`
 
     ![](images/ibm-ce-registry-access-06.png)
 
@@ -74,7 +74,7 @@ After the creation of the `web-app` container image and when the image is saved 
 
 ### Step 3: Start to create a `Image build` in your `Code Engine project`
 
- 1. Open `Images builds` in your Code Engine project and press `Create`
+ 1. Open `Image builds` in your Code Engine project and press `Create`
 
     ![](images/ibm-ce-container-build-01.png)
 
