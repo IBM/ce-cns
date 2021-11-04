@@ -1,5 +1,5 @@
 # Known issues
-### Error message from Keycloak  appears, when you invoke the `web-app`
+### 1. Error message from Keycloak  appears, when you invoke the `web-app`
 
 When you get the following error message from Keycloak, after you invoked the `web-app` url, something went wrong during the Keycloak configuration at the setup. One reason could be, that the `Keycloak` container was restarted after the `Keycloak` configuration and the container lost the needed `realm` configuration for the example application.
  
@@ -19,15 +19,13 @@ export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 cd $ROOT_FOLDER/CE
 bash ce-reconfigure-keycloak.sh
 ```
-### Timeout message appears, after loggin in 
+### 2. Timeout message appears, after loggin in 
 
 If the following error message persists after refreshing your Browser multiple times, we will ensure that the `articles` service will run continously with one instance.
 
 ![](images/cns-ce-example-application-03.png)
 
-
 To fix the issue, we will change the configuration of the `articles` service.
-
 
 #### Step 1: Open the following link to access your projects and from there click on the project you created.
 
@@ -39,28 +37,24 @@ https://cloud.ibm.com/codeengine/projects
 
 ![](images/cns-ce-inspect-project-02.png)
 
-
 #### Step 3: Open the `articles` application
 
-![](images/issue-02.png)
+![](images/issue-02.PNG)
 
-### Step 4: Open the `Configuration` tab, and select `Runtime`.
+#### Step 4: Open the `Configuration` tab, and select `Runtime`.
 
-
-![](images/issue-03.png)
+![](images/issue-03.PNG)
 
 #### Step 5: Click on `Edit and create new revision`
 
 Now you change the `Min number of instances` from 0 to 1. This ensures, that the `articles` service is permanently available for the `web-api` service.
 
-![](images/issue-04.png)
-
+![](images/issue-04.PNG)
 
 #### Step 6: Press the `Save and create` Button
 
 This creates a new configuration for the `articles` application as you can see in the `Overview` tab under `Configuration revisions`.
 
-
-![](images/issue-05.png)
+![](images/issue-05.PNG)
 
 

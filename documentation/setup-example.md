@@ -141,23 +141,23 @@ The following shows an example execution result of the bash script and the last 
 
 You can open the example application with the `Web-App` link. Copy the link and open the link in a browser.
 
-#### Step 6: Open the example application in your browser
+#### Step 6: Open the example application in your browser and log in
 
 Use `user: alice` and `password: alice` for the logon.
 
 ![](images/cns-ce-example-application-02.png)
 
-> Because of scale to zero it could be that the first invocation of the articles cloud take longer. 
+> Because of scale to zero it could be that the first invocation of the articles cloud take longer. If instead of a Login-Screen you get a "We are sorry, page not found" error, please refer to the [known issues](https://ibm.github.io/ce-cns/known-issues/) page.
 
-If instead of a Login-Screen you get a "We are sorry, page not found" error, please refer to the [known issues](https://ibm.github.io/ce-cns/known-issues/) page.
- 
+#### Step 7: Verify that the articles are displayed in the browser
+
+![](images/cns-ce-example-application-04.png)
+
+If you see the following page, please reload the browser. Remember, this can take time, because all applications need to be available. 
+
 ![](images/cns-ce-example-application-03.png)
  
-Just refresh the browser and then you should see following page.
-
- ![](images/cns-ce-example-application-04.png)
-
- If the issue persists, please refer to the [known issues](https://ibm.github.io/ce-cns/known-issues/) page.
+> If the issue persists, please refer to the [known issues](https://ibm.github.io/ce-cns/known-issues/) page.
 
 ---
 

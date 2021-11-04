@@ -1,9 +1,12 @@
-# Optional Lab 2: Push the example containers to a container registry
+# Optional Lab 2: Push the example container images to a container image registry
 
-In this optional lab we will push your example containers to a container registry.
+In this optional lab we will push your example container images to a container image registry.
 We use the free [Red Hat Quay.io](https://quay.io) as our example container registry. Quay has a Community Distribution that powers [Red Hat Quay](https://www.redhat.com/en/resources/quay-datasheet) and [Quay.io](https://quay.io) called [Project QUAY](https://www.projectquay.io) You need to create a free account.
 
-> You can also use the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog) which has a free lite plan with limited resources of Storage (Gigabyte-Months) - 0.5 GB free per month and pull traffic (Gigabytes) - 5 GB free per month. Please visit the [IBM Cloud Registry catalog for the current pricing](https://cloud.ibm.com/registry/catalog).
+> You can also use the [IBM Cloud Registry](https://cloud.ibm.com/registry/catalog) which has a free lite plan with limited resources of Storage (Gigabyte-Months):
+>
+> * 0.5 GB free per month and pull traffic (Gigabytes) 
+> * 5 GB free per month. Please visit the [IBM Cloud Registry catalog for the current pricing](https://cloud.ibm.com/registry/catalog).
 
 To run these optional exercises, you need to ensure you have installed the following tools on your local machine and you can run them in your terminal sessions.
 

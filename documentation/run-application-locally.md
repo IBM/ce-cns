@@ -25,7 +25,6 @@ The gif shows the logon to the example web frontend application. This is the sim
 
 ![](images/application-sample.gif)
 
-
 ### Step 1: Clone the project to your local machine
 
 ```sh
@@ -95,7 +94,7 @@ You should see following users: `admin`, `alice`, `jdoe`
 
 #### Step 1: Configure web-app
 
-The web-app is preconfigured for local usage of Keycloak (`http://localhost:8282/auth`) and web-api (`http://localhost:8082/articles`) and save the changes.
+The web-app is preconfigured for local usage of Keycloak (`http://localhost:8282/auth`) and web-api (`http://localhost:8082/articles`) and save the changes. (Link to [main.js](https://github.com/IBM/ce-cns/blob/master/code/web-app/src/main.js) file)
 
 ```sh
 cd $ROOT_FOLDER/code/web-app/src
@@ -130,7 +129,7 @@ yarn serve
 
 #### Step 1: Configure web-api
 
-When we run the example application locally, we don't need to change the source code for the **web-api** microservce.
+When we run the example application locally, we don't need to change the source code for the **web-api** microservce. (Link to [application.properties](https://github.com/IBM/ce-cns/blob/master/code/web-api/src/main/resources/application.properties) file)
 
 ```sh
 cd $ROOT_FOLDER/code/web-api/src/main/resources
@@ -167,7 +166,7 @@ mvn clean package quarkus:dev
 
 #### Step 1: Configure articles 
 
-When you run the articles microservice locally ensure you have uncommented `quarkus.http.port=8083` and `#quarkus.http.port=8080` commented out.
+When you run the articles microservice locally ensure you have uncommented `quarkus.http.port=8083` and `#quarkus.http.port=8080` commented out. ((Link to [application.properties](https://github.com/IBM/ce-cns/blob/master/code/articles/src/main/resources/application.properties) file)
 
 ```sh
 cd $ROOT_FOLDER/code/articles/src/main/resources

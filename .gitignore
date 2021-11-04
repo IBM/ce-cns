@@ -1,6 +1,9 @@
 .DS_Store
 site/
 
+# Documentation
+build-and-deploy-image-ibmcontainer-registry.md
+
 # Pending codes changes
 code/articles-liberty/
 code/articles-data/
