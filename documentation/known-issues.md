@@ -57,7 +57,7 @@ This creates a new configuration for the `articles` application as you can see i
 
 ![](images/issue-05.PNG)
 
-### Issues with multiple Accounts
+### 3. Issues with multiple Accounts
 
 If you have multiple `IBM Cloud` accounts, please verify that the account logged in to the `Code Engine` dashboard matches the account logged in to the `IBM Cloud Shell`.
 
