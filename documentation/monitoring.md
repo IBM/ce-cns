@@ -19,7 +19,7 @@ bash ce-create-monitoring-logging-services.sh
 
 #### Step 2: Select `Actions -> Monitoring`
 
-> In case you don't have an existing instance of `IBM Cloud Monitoring` Code Engine follow steps in `Create an IBM Cloud Monitoring service manually` or use the `bash script`.
+> In case you don't have an existing instance of `IBM Cloud Monitoring` Code Engine, follow steps in `Create an IBM Cloud Monitoring service manually` or use the `bash script`.
 
 ![](images/cns-ce-monitoring-02.png)
 
