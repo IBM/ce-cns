@@ -17,7 +17,7 @@ Here is the local architecture whichs shows the **Web-App** and the two microser
 
 The gif shows the logon to the example web frontend application. This is the simplified sequence which happens in the background:
 
-1. When we invoke the web frontend on `<http://localhost:8081> we will be routed to login dialog provided by the Keyloak server.
+1. When we invoke the web frontend on `<http://localhost:8080> we will be routed to login dialog provided by the Keyloak server.
 2. After the successfull Keycloak authentication we will be redirected to the web frontend and the frontend gets an access-token.
 3. The access-token contains the needed information for the authorization at the Java microservice Web-API and the user information.
 4. The web frontend extracts and displays the username.
@@ -109,7 +109,7 @@ if (currentHostname.indexOf('localhost') > -1) {
   urls = {
     api: 'http://localhost:8082',
     login: 'http://localhost:8282/auth',
-    cns: 'http://localhost:8081'
+    cns: 'http://localhost:8080'
   }
   store.commit("setAPIAndLogin", urls);
 }
@@ -206,10 +206,16 @@ mvn clean package quarkus:dev
 Open the following URL in your browser:
 
 ```sh
-http://localhost:8081
+http://localhost:8080
 ```
 
 #### Step 2: Log in with the test user: alice, password: alice
+
+
+### Observe the running application
+
+![](images/setup-locally-inspect-output.PNG)
+
 
 ---
 
