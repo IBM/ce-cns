@@ -15,9 +15,11 @@ RUN yarn build
 #           PRODUCTION
 ##############################
 # https://blog.openshift.com/deploy-vuejs-applications-on-openshift/
-FROM nginx:1.20.0-alpine
+FROM nginx:1.21.4-alpine
 
-RUN apk add --update coreutils
+RUN apk update \
+    apk upgrade \
+    apk add --update coreutils
 
 # Add a user how will have the rights to change the files in code
 RUN addgroup -g 1500 nginxusers 
