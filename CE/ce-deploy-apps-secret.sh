@@ -217,6 +217,7 @@ function deployArticles(){
                                    --env QUARKUS_OIDC_AUTH_SERVER_URL="$KEYCLOAK_URL/auth/realms/quarkus" \
                                    --max-scale 1 \
                                    --min-scale 0 \
+                                   --concurrency-target 100 \
                                    --cluster-local                                        
     
     ibmcloud ce application get --name articles
@@ -237,6 +238,7 @@ function deployWebAPI(){
                                 --env CNS_ARTICLES_URL="http://articles.$NAMESPACE.svc.cluster.local/articles" \
                                 --max-scale 1 \
                                 --min-scale 0 \
+                                --concurrency-target 100 \
                                 --port 8081 
 
     ibmcloud ce application get --name web-api

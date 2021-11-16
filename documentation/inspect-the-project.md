@@ -43,7 +43,9 @@ Here we find four tabs used to configure the application instance on `Code Engin
 
 ![](images/cns-ce-inspect-project-update-02.png)
 
-* Then select the `Runtime` tab. It displays the configuration for the instances, vCPU, memory and requests.
+* Then select the `Runtime` tab. It displays the configuration for the instances, vCPU, memory and requests. 
+
+> Note: The **maximum number** of requests that can be processed concurrently per instance. This value is optional. The default value is 100.
 
 ![](images/cns-ce-inspect-project-update-03.png)
 
@@ -75,6 +77,10 @@ Here you can change the `endpoint` visibility. For our `web-api` application we 
 
 In following code you see the `Code Engine CLI` invocation for the `web-api` microservice, this code is used in the bash script to create a Code Engine application instance. It reflects what you have seen in the [`Code Engine UI`](https://cloud.ibm.com/codeengine/projects).
 
+> Note: The only difference is the threshold of concurrent requests per instance at which one or more additional instances are created is defined. Use this value to scale up instances based on concurrent number of requests. If `--concurrency-target` is not specified, this option defaults to the value of the `--concurrency` option. This value is optional. The default value is `0`.
+
+ 
+
 ```sh
 # Valid vCPU and memory combinations: https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo
     ibmcloud ce application create --name web-api \
@@ -85,6 +91,7 @@ In following code you see the `Code Engine CLI` invocation for the `web-api` mic
                                 --env CNS_ARTICLES_URL="http://articles.$NAMESPACE.svc.cluster.local/articles" \
                                 --max-scale 1 \
                                 --min-scale 0 \
+                        --concurrency-target 100 \
                                 --port 8081
 ```
 
