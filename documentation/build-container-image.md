@@ -132,3 +132,7 @@ After the creation of the `web-app` container image and when the image is saved 
  5. Verify the created image
 
     ![](images/ibm-ce-container-build-09.png)
+
+---
+
+> Congratulations, you have successfully completed this optional hands-on lab tasks for `Use Code Engine to build a container image` section of the workshop. Awesome :star:
