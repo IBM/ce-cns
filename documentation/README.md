@@ -95,6 +95,8 @@ Optional Labs:
  
  1. [Run the example application locally](./run-application-locally.md)
  2. [Push the example containers to a container registry](./push-to-container-registry.md)
+ 3. [Use IBM Cloud App ID for the example application](./app-id-optional.md)
+ 4. [Use Code Engine to build a container image](./build-container-image.md)
 
 ### Compatibility
 
