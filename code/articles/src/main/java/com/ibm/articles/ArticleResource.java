@@ -4,16 +4,35 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Set;
 import javax.annotation.PostConstruct;
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import javax.inject.Inject;
+
+// security
 import org.jboss.resteasy.annotations.cache.NoCache;
+import javax.annotation.security.RolesAllowed;
+
+// token
+import org.eclipse.microprofile.jwt.JsonWebToken;
+import io.quarkus.oidc.IdToken;
+import io.quarkus.oidc.RefreshToken;
 
 @Path("/")
 public class ArticleResource {
-    
+
+    @Inject
+    @IdToken
+    JsonWebToken idToken;
+
+    @Inject
+    JsonWebToken accessToken;
+
+    @Inject
+    RefreshToken refreshToken;
+
     private Set<Article> articles = Collections.newSetFromMap(Collections.synchronizedMap(new LinkedHashMap<>()));
 
     @GET
@@ -34,6 +53,7 @@ public class ArticleResource {
     }
 
     private void addSampleArticles() {
+        this.showJSONWebToken();
         System.out.println("-->log: com.ibm.articles.ArticlesResource.addSampleArticles");
 
         addArticle("Blue Cloud Mirror — (Don’t) Open The Doors!", "https://haralduebele.github.io/2019/02/17/blue-cloud-mirror-dont-open-the-doors/", "Harald Uebele");
@@ -54,6 +74,29 @@ public class ArticleResource {
         article.url = url;
         article.authorName = author;
         articles.add(article);
+    }
+
+    private String showJSONWebToken(){
+        try {
+            Object issuer = this.accessToken.getClaim("iss");
+            System.out.println("-->log: com.ibm.articles.ArticlesResource.showJSONWebToken issuer: " + issuer.toString());
+            Object scope = this.accessToken.getClaim("scope");
+            System.out.println("-->log: com.ibm.articles.ArticlesResource.showJSONWebToken scope: " + scope.toString());
+            System.out.println("-->log: com.ibm.articles.ArticlesResource.showJSONWebToken access token: " + this.accessToken.toString());
+
+            String[] parts = issuer.toString().split("/");
+            System.out.println("-->log: com.ibm.articles.ArticlesResource.log part[5]: " + parts[5]);
+
+            if (parts.length == 0) {
+                return "empty";
+            }
+    
+            return  parts[5];
+
+        } catch ( Exception e ) {
+            System.out.println("-->log: com.ibm.articles.ArticlesResource.log Exception: " + e.toString());
+            return "error";
+        }
     }
 
 }

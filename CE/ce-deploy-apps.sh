@@ -17,6 +17,11 @@ export WEBAPP_URL=""
 export ARTICEL_URL=""
 export STATUS="Running"
 
+export KEYCLOAK_IMAGE="quay.io/keycloak/keycloak:10.0.2"
+export ARTICLES_IMAGE="quay.io/$REPOSITORY/articles-ce:v11"
+export WEBAPI_IMAGE="quay.io/$REPOSITORY/web-api-ce:v11"
+export WEBAPP_IMAGE="quay.io/$REPOSITORY/web-app-ce:v11"
+
 # **********************************************************************************
 # Functions definition
 # **********************************************************************************
@@ -40,18 +45,6 @@ function setupCLIenvCE() {
   echo "Namespace: $NAMESPACE"
   kubectl get pods -n $NAMESPACE
 
-  # CHECK=$(kubectl get pods -n $NAMESPACE)
-  # echo "**********************************"
-  # echo "Check for existing pods? '$CHECK'"
-  # echo "**********************************"
-  # COMPARE="No resources found in $NAMESPACE namespace."
-  # if [[ "$CHECK" = "$COMPARE" ]];
-  # then
-  #   echo "Error: Wait until all pods are deleted inside the $NAMESPACE."
-  #   echo "The script exits here!"
-  #   exit 1
-  # fi
-
   CHECK=$(ibmcloud ce project get -n $PROJECT_NAME | awk '/Apps/ {print $2;}')
   echo "**********************************"
   echo "Check for existing apps? '$CHECK'"
@@ -71,7 +64,7 @@ function setupCLIenvCE() {
 function deployKeycloak(){
 
     ibmcloud ce application create --name keycloak \
-                                --image "quay.io/keycloak/keycloak:10.0.2" \
+                                --image  "$KEYCLOAK_IMAGE" \
                                 --cpu 0.5 \
                                 --memory 1G \
                                 --env KEYCLOAK_USER="admin" \
@@ -83,8 +76,8 @@ function deployKeycloak(){
 
     # checkKubernetesPod "keycloak"
    
-    ibmcloud ce application get --name keycloak
-    KEYCLOAK_URL=$(ibmcloud ce application get --name keycloak | grep "https://keycloak." |  awk '/keycloak/ {print $2}')
+    KEYCLOAK_URL=$(ibmcloud ce application get --name keycloak -o url)
+    #KEYCLOAK_URL=$(ibmcloud ce application get --name keycloak | grep "https://keycloak." |  awk '/keycloak/ {print $2}')
     echo "Set Keycloak URL: $KEYCLOAK_URL/auth"
 }
 
@@ -217,13 +210,14 @@ function reconfigureKeycloak (){
 
 function deployArticles(){
 
-    ibmcloud ce application create --name articles --image "quay.io/$REPOSITORY/articles-ce:v3" \
+    ibmcloud ce application create --name articles --image "$ARTICLES_IMAGE" \
                                    --cpu "0.25" \
                                    --memory "0.5G" \
                                    --env QUARKUS_OIDC_AUTH_SERVER_URL="$KEYCLOAK_URL/auth/realms/quarkus" \
                                    --max-scale 1 \
                                    --min-scale 0 \
-                                   --concurrency-target 100 \
+                                   --concurrency-target 10 \
+                                   --port 8083
                                    --cluster-local                                        
     
     ibmcloud ce application get --name articles
@@ -237,18 +231,18 @@ function deployWebAPI(){
     
     # Valid vCPU and memory combinations: https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo
     ibmcloud ce application create --name web-api \
-                                --image "quay.io/$REPOSITORY/web-api-ce:v7" \
+                                --image "$WEBAPI_IMAGE" \
                                 --cpu "0.5" \
                                 --memory "1G" \
                                 --env QUARKUS_OIDC_AUTH_SERVER_URL="$KEYCLOAK_URL/auth/realms/quarkus" \
                                 --env CNS_ARTICLES_URL="http://articles.$NAMESPACE.svc.cluster.local/articles" \
                                 --max-scale 1 \
                                 --min-scale 0 \
-                                --concurrency-target 100 \
-                                --port 8081 
+                                --concurrency-target 10 \
+                                --port 8082 
 
-    ibmcloud ce application get --name web-api
-    WEBAPI_URL=$(ibmcloud ce application get --name web-api | grep "https://web-api." |  awk '/web-api/ {print $2}')
+    WEBAPI_URL=$(ibmcloud ce application get --name web-api -o url)
+    #WEBAPI_URL=$(ibmcloud ce application get --name web-api | grep "https://web-api." |  awk '/web-api/ {print $2}')
     echo "Set WEBAPI URL: $WEBAPI_URL"
 
     # checkKubernetesPod "web-api"
@@ -257,12 +251,13 @@ function deployWebAPI(){
 function deployWebApp(){
 
     ibmcloud ce application create --name web-app \
-                                --image "quay.io/$REPOSITORY/web-app-ce:v2" \
+                                --image "$WEBAPP_IMAGE" \
                                 --cpu 0.5 \
                                 --memory 1G \
                                 --env VUE_APP_KEYCLOAK="$KEYCLOAK_URL/auth" \
                                 --env VUE_APP_ROOT="/" \
                                 --env VUE_APP_WEBAPI="$WEBAPI_URL/articles" \
+                                --concurrency-target 10 \
                                 --max-scale 1 \
                                 --min-scale 0 \
                                 --port 8080 
@@ -286,8 +281,9 @@ function deployWebApp(){
                                 # [--wait] \
                                 # [--wait-timeout WAIT_TIMEOUT]
 
-    ibmcloud ce application get --name web-app
-    WEBAPP_URL=$(ibmcloud ce application get --name web-app | grep "https://web-app." |  awk '/web-app/ {print $2}')
+    WEBAPP_URL=$(ibmcloud ce application get --name web-app -o url)
+    #WEBAPP_URL=$(ibmcloud ce application get --name web-app | grep "https://web-app." |  awk '/web-app/ {print $2}')
+   
     echo "Set WEBAPP URL: $WEBAPP_URL"
 
     # checkKubernetesPod "web-app"

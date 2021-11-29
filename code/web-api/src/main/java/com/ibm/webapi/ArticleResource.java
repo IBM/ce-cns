@@ -2,16 +2,22 @@ package com.ibm.webapi;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.annotation.security.RolesAllowed;
-import javax.inject.Inject;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import javax.inject.Inject;
+
+// security
+import org.jboss.resteasy.annotations.cache.NoCache;
+import javax.annotation.security.RolesAllowed;
+
+// token
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import io.quarkus.oidc.IdToken;
 import io.quarkus.oidc.RefreshToken;
-import org.jboss.resteasy.annotations.cache.NoCache;
 
 @Path("/")
 public class ArticleResource {
@@ -39,6 +45,7 @@ public class ArticleResource {
         try {
             List<CoreArticle> coreArticles = articlesDataAccess.getArticles(5);
             System.out.println("-->log: com.ibm.webapi.ArticleResource.getArticles -> articlesDataAccess.getArticles");
+            this.showJSONWebToken();
             return createArticleList(coreArticles);
         } catch (NoConnectivity e) {
             System.err.println("-->log: com.ibm.webapi.ArticleResource.getArticles: Cannot connect to articles service");
@@ -92,6 +99,30 @@ public class ArticleResource {
         response.append("<li>refresh_token: ").append(refreshToken.getToken() != null).append("</li>");
 
         return response.append("</ul>").append("</body>").append("</html>").toString();
+    }
+
+
+    private String showJSONWebToken(){
+        try {
+            Object issuer = this.accessToken.getClaim("iss");
+            System.out.println("-->log: com.ibm.webapi.ArticleResource.showJSONWebToken issuer: " + issuer.toString());
+            Object scope = this.accessToken.getClaim("scope");
+            System.out.println("-->log: com.ibm.webapi.ArticleResource.showJSONWebToken scope: " + scope.toString());
+            System.out.println("-->log: com.ibm.webapi.ArticleResource.tenantJSONWebToken access token: " + this.accessToken.toString());
+
+            String[] parts = issuer.toString().split("/");
+            System.out.println("-->log: com.ibm.articles.ArticleResource.log part[5]: " + parts[5]);
+
+            if (parts.length == 0) {
+                return "empty";
+            }
+    
+            return  parts[5];
+
+        } catch ( Exception e ) {
+            System.out.println("-->log: com.ibm.webapi.ArticleResource.log Exception: " + e.toString());
+            return "error";
+        }
     }
     
 }
