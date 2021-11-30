@@ -11,7 +11,15 @@ After the creation of the `web-app` container image and when the image is saved 
 
    ![](images/ibm-ce-container-build-10.png)
 
-### Step 1: Create an IBM Cloud Container image `Namespace`
+### Architecture
+
+The following simplified architecture diagram show the dependencies of the `Code Engine project`, the `IBM Cloud Container Registry`, the `Quay Container Registry`, the `IBM Cloud Logging`, the `ÌBM Cloud Monitoring` and `the GitHub project`.
+
+![](images/ce-architecture-optional-lab-4.png)
+
+### Steps
+
+#### Step 1: Create an IBM Cloud Container image `Namespace`
 
  1. Open following link:
 
@@ -29,7 +37,7 @@ After the creation of the `web-app` container image and when the image is saved 
 
     ![](images/ibm-container-registry-02.png)
 
-### Step 2: Start to create a `Registry access` in your Code Engine project
+#### Step 2: Start to create a `Registry access` in your Code Engine project
 
  1. Open `Registry access` in your Code Engine project and press `Create`
 
@@ -72,7 +80,7 @@ After the creation of the `web-app` container image and when the image is saved 
 
     ![](images/ibm-ce-registry-access-07.png)
 
-### Step 3: Start to create a `Image build` in your `Code Engine project`
+#### Step 3: Start to create a `Image build` in your `Code Engine project`
 
  1. Open `Image builds` in your Code Engine project and press `Create`
 
@@ -109,7 +117,7 @@ After the creation of the `web-app` container image and when the image is saved 
 
     ![](images/ibm-ce-container-build-04.png)
 
-### Step 4: Now create the container image
+#### Step 4: Now create the container image
 
  1. Press `Submit build`
 

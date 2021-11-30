@@ -2,6 +2,12 @@
 
 Here we use the [IBM Cloud Monitoring](https://cloud.ibm.com/docs/monitoring?topic=monitoring-getting-started#getting-started) (lite plan) service.
 
+### Architecture
+
+The following simplified architecture diagram show the dependencies of the `Code Engine project`, the `Quay Container Registry`, the `IBM Cloud Logging` and the `ÌBM Cloud Monitoring`.
+
+![](images/ce-architecture-lab-3.png)
+
 ### Create the monitoring service automatically
 
 You can create the lite service instances for `logging` and `monitoring` by using this bash script [`ce-create-monitoring-logging-services.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-create-monitoring-logging-services.sh).

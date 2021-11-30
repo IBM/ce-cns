@@ -14,6 +14,13 @@ The image blow shows a screen shot from `26. May 2021` of the `free tier`.
 
 ![](images/cns-ce-pricing-20210526.png)
 
+
+### Architecture
+
+The following simplified architecture diagram show the dependencies of the `Code Engine project` and the `Quay Container Registry`.
+
+![](images/ce-architecture-lab-1.png)
+
 ### Create `Code Engine` project
 
 #### Step 1: Log on to IBM Cloud and navigate to the Code Engine projects
