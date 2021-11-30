@@ -30,7 +30,8 @@ nav:
        - Cloud-Native-Starter project: https://github.com/IBM/cloud-native-starter
        - Cloud-Native-Starter project security: https://github.com/IBM/cloud-native-starter/security
        - Keycloak core concepts of open-source identity and access management: https://developers.redhat.com/blog/2019/12/11/keycloak-core-concepts-of-open-source-identity-and-access-management/
-    - IBM CLoud Code Engine:
+    - IBM Cloud Code Engine:
+       - YouTube Video 'Code Engine Run Your Source Code, Containers, Batch Jobs - Serverless' : https://youtu.be/QZTfivC2ZEA 
        - Examples on GitHub: https://github.com/IBM/CodeEngine
        - Code Engine CLI reference: https://cloud.ibm.com/docs/codeengine?topic=codeengine-cli
 
