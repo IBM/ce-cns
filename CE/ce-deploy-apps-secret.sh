@@ -8,6 +8,7 @@
 
 export PROJECT_NAME=$MYPROJECT
 export RESOURCE_GROUP=default
+export REGISTRY="quay.io"
 export REPOSITORY=tsuedbroecker
 export REGION="us-south"
 export NAMESPACE=""
@@ -17,10 +18,10 @@ export WEBAPP_URL=""
 export ARTICEL_URL=""
 export STATUS="Running"
 
-export KEYCLOAK_IMAGE="quay.io/keycloak/keycloak:10.0.2"
-export ARTICLES_IMAGE="quay.io/$REPOSITORY/articles-ce:v11"
-export WEBAPI_IMAGE="quay.io/$REPOSITORY/web-api-ce:v11"
-export WEBAPP_IMAGE="quay.io/$REPOSITORY/web-app-ce:v11"
+export KEYCLOAK_IMAGE="$REGISTRY/keycloak/keycloak:10.0.2"
+export ARTICLES_IMAGE="$REGISTRY/$REPOSITORY/articles-ce:v11"
+export WEBAPI_IMAGE="$REGISTRY/$REPOSITORY/web-api-ce:v11"
+export WEBAPP_IMAGE="$REGISTRY/$REPOSITORY/web-app-ce:v11"
 
 
 # **********************************************************************************
@@ -215,6 +216,15 @@ function deployArticles(){
                                    --cluster-local                                        
     
     ibmcloud ce application get --name articles
+    
+     # Change autoscaling for articles configuration
+
+    kn service update articles --annotation-revision autoscaling.knative.dev/scaleToZeroPodRetentionPeriod=5m
+    ibmcloud ce application get --name articles -o json > temp-articles.json
+    CURRENT_CONFIG=$(cat ./temp-articles.json| jq '.status.latestReadyRevisionName' | sed 's/"//g')
+    echo "Current config: $CURRENT_CONFIG"
+    rm temp-articles.json
+    kn revision describe $CURRENT_CONFIG --verbose
 
     # checkKubernetesPod "articles"
 }
@@ -238,6 +248,15 @@ function deployWebAPI(){
     WEBAPI_URL=$(ibmcloud ce application get --name web-api -o url)
     #WEBAPI_URL=$(ibmcloud ce application get --name web-api | grep "https://web-api." |  awk '/web-api/ {print $2}')
     echo "Set WEBAPI URL: $WEBAPI_URL"
+    
+    # Change autoscaling for web-api configuration
+
+    kn service update web-api --annotation-revision autoscaling.knative.dev/scaleToZeroPodRetentionPeriod=5m
+    ibmcloud ce application get --name web-api -o json > temp-web-api.json
+    CURRENT_CONFIG=$(cat ./temp-web-api.json| jq '.status.latestReadyRevisionName' | sed 's/"//g')
+    echo "Current config: $CURRENT_CONFIG"
+    rm temp-web-api.json
+    kn revision describe $CURRENT_CONFIG --verbose
 
     # checkKubernetesPod "web-api"
 }
