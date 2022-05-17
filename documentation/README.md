@@ -63,7 +63,7 @@ In the following table you see the **application**/container, the exposed **rout
 | **Application** | **Route** | **TLS Encryption** | **Scale to zero** | **Container Registry** | **vCPU** | **Memory** | **min Instances** | **max Instances** |
 | --- | --- | --- | --- |  --- | --- |  --- | --- | --- |
 | web-app | external | yes |yes | Quay | 0.5 | 1 GB | 0 | 1 |
-| **keycloak** | external | yes | **no** | Docker | 0.5 | 1 GB | 1 | 1 |
+| **keycloak** | external | yes | **no** | Quay | 0.5 | 1 GB | 1 | 1 |
 | web-api  | external | yes | yes | Quay | 0.5 | 1 GB | 0 | 1 |
 | **articles** | **internal** | no (mTLS coming sone) | yes | Quay | 0.25 | 0.5G GB | 0 | 1 |
 
