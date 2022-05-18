@@ -11,7 +11,7 @@ RUN mvn package
 ##############################
 #           PRODUCTION
 ##############################
-FROM adoptopenjdk/openjdk11-openj9:ubi-minimal
+FROM icr.io/appcafe/ibm-semeru-runtimes:open-11-jre-ubi-minimal
 
 ENV JAVA_OPTIONS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 ENV AB_ENABLED=jmx_exporter
@@ -29,4 +29,4 @@ COPY --from=BUILD --chown=1001 /usr/src/app/target/quarkus-app/quarkus/ /deploym
 # **********
 # Local and Code Engine
 EXPOSE 8083 
-CMD ["java", "-Xmx128m", "-XX:+IdleTuningGcOnIdle", "-Xtune:virtualized", "-Xscmx128m", "-Xscmaxaot100m", "-Xshareclasses:cacheDir=/opt/shareclasses", "-Dcns.quarkus.oidc.auth-server-url=${QUARKUS_OIDC_AUTH_SERVER_URL}", "-jar", "/deployments/quarkus-run.jar"]
+CMD ["java", "-Xmx128m", "-XX:+IdleTuningGcOnIdle", "-Xtune:virtualized", "-Dcns.quarkus.oidc.auth-server-url=${QUARKUS_OIDC_AUTH_SERVER_URL}", "-jar", "/deployments/quarkus-run.jar"]

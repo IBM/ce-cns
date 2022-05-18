@@ -8,8 +8,9 @@
 
 export PROJECT_NAME=$MYPROJECT
 export RESOURCE_GROUP=${RESOURCE_GROUP:-default}
-export REPOSITORY=tsuedbroecker
 export REGION=${REGION:-us-south}
+export REPOSITORY=tsuedbroecker
+
 export NAMESPACE=""
 export KEYCLOAK_URL=""
 export WEBAPI_URL=""

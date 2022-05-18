@@ -10,7 +10,7 @@ RUN mvn package
 ##############################
 #           PRODUCTION
 ##############################
-FROM adoptopenjdk/openjdk11-openj9:ubi-minimal
+FROM icr.io/appcafe/ibm-semeru-runtimes:open-11-jre-ubi-minimal
 
 ENV JAVA_OPTIONS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
 ENV AB_ENABLED=jmx_exporter

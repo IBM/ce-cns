@@ -23,6 +23,8 @@ The following simplified architecture diagram show the dependencies of the `Code
 
 ### Create `Code Engine` project
 
+>Note: If you are using an [`IBM Cloud Techzone Environment`](https://techzone.ibm.com), you can skip the `Create Code Engine project` and replace the project name with the specified `Code Engine project name` for your [`IBM Cloud Techzone Environment`](https://techzone.ibm.com).
+
 #### Step 1: Log on to IBM Cloud and navigate to the Code Engine projects
 
 Use following link to directly navigate to the Code Engine projects in IBM Cloud.
@@ -89,6 +91,14 @@ ROOT_FOLDER=$(pwd)
 export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 ```
 
+> Note: In case you are using an [`IBM Cloud Techzone Environment`](https://techzone.ibm.com), please execute following commands to set the right environment.
+
+```sh
+export MYPROJECT=<project from email>
+export REGION=<region from email>
+export RESOURCE_GROUP=<rg from email>
+```
+
 #### Step 3: Execute following bash automation
 
 > Be patient, because the script may take several minutes (_up to 10 min_).
@@ -124,6 +134,7 @@ Here are the simplified steps that are carried out in the bash script using main
 5. Deploy `articles` microservice which is defined as `local cluster` here, we need to know the `namespace`. ([details are related to Knative](https://github.com/knative/serving/issues/7450))
 6. Deploy `web-api` with the needed `Keycloak` and `articles` urls as environment variables.
 7. Reconfigure `web-app` with the needed `Keycloak` and web-api urls as environment variables.
+8. Configure the application scale to zero timeframe using a [Knative](https://knative.dev/docs/) annotation :[`kn service update articles --annotation-revision autoscaling.knative.dev/scaleToZeroPodRetentionPeriod=5m`](LINK TO CODE)
 
 > PS: You can also use the [`ce-deploy-apps-secret.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-deploy-apps-secret.sh) script, which does create [secrets](https://cloud.ibm.com/docs/codeengine?topic=codeengine-configmap-secret) for the user and password for the Keycloak container.
 

@@ -22,6 +22,10 @@ yarn.lock
 # Temp files
 update-cns-realm.json
 tmp-cns-realm.json
-
+temp.json
+articles-temp.json
+web-api-temp.json
+fedora-coreos-36.20220507.1.0-qemu.x86_64.qcow2.xz
+podman-machine-default_fedora-coreos-36.20220507.1.0-qemu.x86_64.qcow2
 
 
