@@ -7,8 +7,8 @@
 # **************** Global variables
 
 export PROJECT_NAME=$MYPROJECT
-export RESOURCE_GROUP=default
-export REGION="us-south"
+export RESOURCE_GROUP=${RESOURCE_GROUP:-default}
+export REGION=${REGION:-us-south}
 
 # **************** Functions ****************************
 
