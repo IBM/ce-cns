@@ -7,10 +7,10 @@
 # **************** Global variables
 
 export PROJECT_NAME=$MYPROJECT
-export RESOURCE_GROUP=default
+export RESOURCE_GROUP=${RESOURCE_GROUP:-default}
+export REGION=${REGION:-us-south}
 export REGISTRY="quay.io"
 export REPOSITORY=tsuedbroecker
-export REGION="us-south"
 export NAMESPACE=""
 export KEYCLOAK_URL=""
 export WEBAPI_URL=""
