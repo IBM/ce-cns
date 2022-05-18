@@ -69,3 +69,11 @@ If you have multiple `IBM Cloud` accounts, please verify that the account logged
 #### Step 2: Verify account logged in to the `IBM Cloud Shell`
 ![](images/issue-07.PNG)
 
+### 4. Knative  "unknown flag: --annotation-revision"
+
+If you see following error in the IBM Cloud shell:
+
+![](images/issue-08.PNG)
+
+The reason is the Knative CLI must be updated inside the IBM Cloud shell. No task on your side.
+
