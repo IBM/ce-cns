@@ -15,8 +15,8 @@ export APPID_INSTANCE_NAME=cns-example-AppID-automated
 export APPID_SERVICE_KEY_NAME=cns-example-AppID-automated-service-key
 
 
-export RESOURCE_GROUP=default
-export REGION="us-south"
+export RESOURCE_GROUP=${RESOURCE_GROUP:-default}
+export REGION=${REGION:-us-south}
 export NAMESPACE=""
 
 # CE for IBM Cloud Container Registry access

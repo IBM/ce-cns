@@ -2,8 +2,8 @@
 
 # **************** Global variables
 
-export RESOURCE_GROUP=default
-export REGION="us-south"
+export RESOURCE_GROUP=${RESOURCE_GROUP:-default}
+export REGION=${REGION:-us-south}
 export SERVICE_PLAN="lite"
 export LOGANALYSIS_SERVICE_NAME="logdna"
 export YOUR_SERVICE_FOR_LOGGING="IBMLogAnalysis-code-engine"
