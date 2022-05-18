@@ -23,6 +23,8 @@ The following simplified architecture diagram show the dependencies of the `Code
 
 ### Create `Code Engine` project
 
+>Note: If you are using an [`IBM Cloud Techzone Environment`](https://techzone.ibm.com), you can skip the `Create Code Engine project` and replace the project name with the specified `Code Engine project name` for your [`IBM Cloud Techzone Environment`](https://techzone.ibm.com).
+
 #### Step 1: Log on to IBM Cloud and navigate to the Code Engine projects
 
 Use following link to directly navigate to the Code Engine projects in IBM Cloud.
@@ -87,6 +89,14 @@ ROOT_FOLDER=$(pwd)
 
 ```sh
 export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
+```
+
+> Note: In case you are using an [`IBM Cloud Techzone Environment`](https://techzone.ibm.com), please execute following commands to set the right environment.
+
+```sh
+export MYPROJECT=<project from email>
+export REGION=<region from email>
+export RESOURCE_GROUP=<rg from email>
 ```
 
 #### Step 3: Execute following bash automation
