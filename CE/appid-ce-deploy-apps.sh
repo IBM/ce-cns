@@ -9,7 +9,6 @@
 export PROJECT_NAME=$MYPROJECT
 #export PROJECT_NAME=cloud-native-starter-ce-workshop
 export REPOSITORY=tsuedbroecker
-
 export RESOURCE_GROUP=${RESOURCE_GROUP:-default}
 export REGION=${REGION:-us-south}
 export NAMESPACE=""
