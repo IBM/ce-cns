@@ -13,6 +13,16 @@ echo "Container repository     : $MY_REPOSITORY"
 echo "Container registry       : $MY_REGISTRY"
 echo "-----------------------------"
 
+if [[ $MY_REPOSITORY == "" ]]; then
+    echo "*** Ensure '$MY_REPOSITORY' variable is set!"
+    exit 1
+fi
+
+if [[ $MY_REGISTRY == "" ]]; then
+    echo "*** Ensure '$MY_REGISTRY' variable is set!"
+    exit 1
+fi
+
 cd ..
 export REPOSITORY=$MY_REPOSITORY
 export REGISTRY=$MY_REGISTRY
