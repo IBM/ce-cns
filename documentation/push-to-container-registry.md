@@ -17,7 +17,7 @@ To run these optional exercises, you need to ensure you have installed the follo
 ### Step 1: Login to Quay on your local machine
 
 ```sh
-docker login [quay.io OR docker.io]
+[docker OR podman] login [quay.io OR docker.io]
 ```
 
 ### Step 2: Ensure `$ROOT_PATH` variable is set to `YOUR_PATH/ce-cns` of your cloned repository
