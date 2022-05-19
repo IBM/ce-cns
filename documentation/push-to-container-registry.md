@@ -12,11 +12,12 @@ To run these optional exercises, you need to ensure you have installed the follo
 
 * [git 2.24.1 or higher](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [Docker 3.0.4 or higher](https://www.docker.com/products/docker-desktop)
+* [Podman Client / Server	4.1.0 / 4.3.0 or higher](https://www.docker.com/products/docker-desktop)
 
 ### Step 1: Login to Quay on your local machine
 
 ```sh
-docker login quay.io
+docker login [quay.io OR docker.io]
 ```
 
 ### Step 2: Ensure `$ROOT_PATH` variable is set to `YOUR_PATH/ce-cns` of your cloned repository
@@ -27,12 +28,19 @@ Display the `$ROOT_PATH` you set in `Lab 1: Setup the example application`.
 echo $ROOT_PATH
 ```
 
+You can use for example:
+
+```sh
+cd YOUR_PATH/ce-cns
+export ROOT_PATH=$(pwd)
+```
+
 ### Step 3: Configure articles 
 
 When you run the articles microservice on CE ensure you have uncommented `quarkus.http.port=8080` and `#quarkus.http.port=8083` commented out.
 
 ```sh
-cd $ROOT_FOLDER/code/articles/src/main/resources
+cd $ROOT_PATH/code/articles/src/main/resources
 nano application.properties
 ```
 
@@ -67,9 +75,27 @@ _Note:_ In the image below you see an example where you can find the name, you s
 
 This bash script will build and push your container images to [Red Hat Quay.io](https://quay.io).
 
+Invoke the script with the parameter `podman` or `docker`.
+
 ```sh
-cd $ROOT_FOLDER/CE
-bash quay-build-and-push.sh
+cd $ROOT_PATH/CE
+bash container-image-build-and-push.sh podman
+```
+
+* Example output:
+
+```sh
+************************************
+ Display parameter
+************************************
+
+Parameter count : podman
+Parameter zero 'name of the script': container-image-build-and-push.sh
+---------------------------------
+Local container engine   : podman
+Root path                : /Users/thomassuedbroecker/Downloads/dev/ce-workshop-ibm/ce-cns
+-----------------------------
+*** Setup container engine to Podman!
 ```
 
 ### Step 6: Verify the public access for your containers
@@ -85,7 +111,7 @@ Now you have to reflect the changes you made for the container registry in the `
 1. Open the bash script with an editor
 
 ```sh
-cd $ROOT_FOLDER/ce
+cd $ROOT_PATH/ce
 nano ce-deploy-apps.sh
 ``` 
 

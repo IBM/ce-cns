@@ -8,18 +8,29 @@ echo "Parameter count : $@"
 echo "Parameter zero 'name of the script': $0"
 echo "---------------------------------"
 echo "Local container engine   : $1"
+echo "Root path                : $ROOT_PATH"
 echo "-----------------------------"
 
 cd ..
 #export REPOSITORY=$MY_REPOSITORY
 export REPOSITORY=tsuedbroecker
 export REGISTRY="quay.io"
-export ROOT_PATH=$(PWD)
+#export ROOT_PATH=$(PWD)
+
 export COMMONTAG="v12.0.0"
 export ARTICLES_IMAGE="$REGISTRY/$REPOSITORY/articles-ce:$COMMONTAG"
 export WEBAPI_IMAGE="$REGISTRY/$REPOSITORY/web-api-ce:$COMMONTAG"
 export WEBAPP_IMAGE="$REGISTRY/$REPOSITORY/web-app-ce:$COMMONTAG"
 export CONTAINER_ENGINE=""
+
+if [[ $ROOT_PATH == "" ]]; then
+    echo "*** Ensure $ROOT_PATH variable is set "
+    echo "*** to YOUR_PATH/ce-cns of your cloned repository'"
+    echo "*** Example:"
+    echo "*** cd [YOUR_PROJECT_PATH]"
+    echo '*** export ROOT_PATH=$(pwd)'
+    exit 1
+fi
 
 if [[ $1 == "docker" ]]; then
         echo "*** Setup container engine to Docker!"
