@@ -61,7 +61,13 @@ quarkus.http.cors=true
 resteasy.role.based.security=true
 ```
 
-### Step 4: Export your Quay username as your repository name
+### Step 4: Export your container registry name as your repository name
+
+```sh
+export MY_REGISTRY=[quay.io OR docker.io]
+```
+
+### Step 5: Export your Quay username as your repository name
 
 ```sh
 export MY_REPOSITORY=YOUR_USERNAME
@@ -71,7 +77,7 @@ _Note:_ In the image below you see an example where you can find the name, you s
 
 ![](images/quay-user.png)
 
-### Step 5: Execute following bash automation
+### Step 6: Execute following bash automation
 
 This bash script will build and push your container images to [Red Hat Quay.io](https://quay.io).
 
@@ -94,17 +100,20 @@ Parameter zero 'name of the script': container-image-build-and-push.sh
 ---------------------------------
 Local container engine   : podman
 Root path                : /Users/thomassuedbroecker/Downloads/dev/ce-workshop-ibm/ce-cns
+Container repository     : tsuedbroecker
+Container registry       : quay.io
 -----------------------------
 *** Setup container engine to Podman!
+************************************
 ```
 
-### Step 6: Verify the public access for your containers
+### Step 7: Verify the public access for your containers
 
 Visit your repository on [Red Hat Quay.io](https://quay.io) and verify your containers are available for public usage. This is only the case if you are going to run the same setup as given in `Lab 1: Setup the example application`.
 
 ![](images/quay-public.png)
 
-### Step 7: Update the `ce-deploy-apps.sh` bash script
+### Step 8: Update the `ce-deploy-apps.sh` bash script
 
 Now you have to reflect the changes you made for the container registry in the `ce-deploy-apps.sh`, if you plan to use this bash script to deploy your containers to `Code Engine`.
 

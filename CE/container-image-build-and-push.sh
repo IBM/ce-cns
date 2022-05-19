@@ -9,12 +9,14 @@ echo "Parameter zero 'name of the script': $0"
 echo "---------------------------------"
 echo "Local container engine   : $1"
 echo "Root path                : $ROOT_PATH"
+echo "Container repository     : $MY_REPOSITORY"
+echo "Container registry       : $MY_REGISTRY"
 echo "-----------------------------"
 
 cd ..
-#export REPOSITORY=$MY_REPOSITORY
-export REPOSITORY=tsuedbroecker
-export REGISTRY="quay.io"
+export REPOSITORY=$MY_REPOSITORY
+export REGISTRY=$MY_REGISTRY
+#export REPOSITORY=tsuedbroecker
 #export ROOT_PATH=$(PWD)
 
 export COMMONTAG="v12.0.0"
