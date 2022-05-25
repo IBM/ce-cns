@@ -20,7 +20,7 @@ export ARTICEL_URL=""
 export STATUS="Running"
 
 export KEYCLOAK_IMAGE="$REGISTRY/keycloak/keycloak:10.0.2"
-export COMMONTAG="v12.0.0"
+export COMMONTAG="v13.0.0"
 export ARTICLES_IMAGE="$REGISTRY/$REPOSITORY/articles-ce:$COMMONTAG"
 export WEBAPI_IMAGE="$REGISTRY/$REPOSITORY/web-api-ce:$COMMONTAG"
 export WEBAPP_IMAGE="$REGISTRY/$REPOSITORY/web-app-ce:$COMMONTAG"

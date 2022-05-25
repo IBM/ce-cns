@@ -11,6 +11,7 @@ export RESOURCE_GROUP=${RESOURCE_GROUP:-default}
 export REGION=${REGION:-us-south}
 export REGISTRY="quay.io"
 export REPOSITORY=tsuedbroecker
+export COMMONTAG="v13.0.0"
 
 export NAMESPACE=""
 export KEYCLOAK_URL=""
@@ -20,9 +21,9 @@ export ARTICEL_URL=""
 export STATUS="Running"
 
 export KEYCLOAK_IMAGE="$REGISTRY/keycloak/keycloak:10.0.2"
-export ARTICLES_IMAGE="$REGISTRY/$REPOSITORY/articles-ce:v11"
-export WEBAPI_IMAGE="$REGISTRY/$REPOSITORY/web-api-ce:v11"
-export WEBAPP_IMAGE="$REGISTRY/$REPOSITORY/web-app-ce:v11"
+export ARTICLES_IMAGE="$REGISTRY/$REPOSITORY/articles-ce:$COMMONTAG"
+export WEBAPI_IMAGE="$REGISTRY/$REPOSITORY/web-api-ce:$COMMONTAG"
+export WEBAPP_IMAGE="$REGISTRY/$REPOSITORY/web-app-ce:$COMMONTAG"
 
 
 # **********************************************************************************
