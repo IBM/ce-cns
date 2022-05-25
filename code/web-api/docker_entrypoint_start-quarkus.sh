@@ -11,11 +11,8 @@ echo "Execute java command "
 echo "**********************************"
 
 java -Xmx128m \
-     -Xscmaxaot100m \
      -XX:+IdleTuningGcOnIdle \
      -Xtune:virtualized \
-     -Xscmx128m \
-     -Xshareclasses:cacheDir=/opt/shareclasses \
      -Dcns.articles-url=${CNS_ARTICLES_URL} \
      -Dcns.quarkus.oidc.auth-server-url=${QUARKUS_OIDC_AUTH_SERVER_URL} \
      -jar \
