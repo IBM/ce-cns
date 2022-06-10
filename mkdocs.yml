@@ -26,6 +26,7 @@ nav:
     - 4. Use Code Engine to build a container image: ./build-container-image.md
   - Additional Resources:
     - Known issues: ./known-issues.md
+    - Techzone access: ./techzone.md
     - Cloud Native Starter example:
        - Cloud-Native-Starter project: https://github.com/IBM/cloud-native-starter
        - Cloud-Native-Starter project security: https://github.com/IBM/cloud-native-starter/security
