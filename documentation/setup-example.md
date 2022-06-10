@@ -16,7 +16,7 @@ The image blow shows a screen shot from `26. May 2021` of the `free tier`.
 
 #### Optional: Use Techzone
 
-If you are an IBM Partner or an IBMer you can use [Techzone ](https://techzone.ibm.com/collection/an-example-to-deploy-a-existing-java-microservices-based-application-to-codeengine) to reserve an IBM Cloud environment for the workshop. You find the details in the [additional resources of the workshop documentation for Techzone](). 
+If you are an IBM Partner or an IBMer you can use [Techzone ](https://techzone.ibm.com/collection/an-example-to-deploy-a-existing-java-microservices-based-application-to-codeengine) to reserve an IBM Cloud environment for the workshop. You find the details in the [additional resources of the workshop documentation for Techzone](https://ibm.github.io/ce-cns/techzone/). 
 
 
 ### Architecture
