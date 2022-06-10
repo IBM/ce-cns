@@ -14,9 +14,9 @@ The image blow shows a screen shot from `26. May 2021` of the `free tier`.
 
 ![](images/cns-ce-pricing-20210526.png)
 
-#### Optional: Use Techzone
+#### Optional: Use TechZone
 
-If you are an IBM Partner or an IBMer you can use [Techzone ](https://techzone.ibm.com/collection/an-example-to-deploy-a-existing-java-microservices-based-application-to-codeengine) to reserve an IBM Cloud environment for the workshop. You find the details in the [additional resources of the workshop documentation for Techzone](https://ibm.github.io/ce-cns/techzone/). 
+If you are an IBM Partner or an IBMer you can use [TechZone ](https://techzone.ibm.com/collection/an-example-to-deploy-a-existing-java-microservices-based-application-to-codeengine) to reserve an IBM Cloud environment for the workshop. You find the details in the [additional resources of the workshop documentation for TechZone](https://ibm.github.io/ce-cns/techzone/). 
 
 
 ### Architecture
@@ -27,7 +27,7 @@ The following simplified architecture diagram show the dependencies of the `Code
 
 ### Create `Code Engine` project
 
->Note: If you are using an [`IBM Cloud Techzone Environment`](https://techzone.ibm.com), you can skip the `Create Code Engine project` and replace the project name with the specified `Code Engine project name` for your [`IBM Cloud Techzone Environment`](https://techzone.ibm.com).
+>Note: If you are using an [`IBM Cloud TechZone Environment`](https://techzone.ibm.com), you can skip the `Create Code Engine project` and replace the project name with the specified `Code Engine project name` for your [`IBM Cloud TechZone Environment`](https://techzone.ibm.com).
 
 #### Step 1: Log on to IBM Cloud and navigate to the Code Engine projects
 
@@ -95,7 +95,7 @@ ROOT_FOLDER=$(pwd)
 export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 ```
 
-> Note: In case you are using an [`IBM Cloud Techzone Environment`](https://techzone.ibm.com), please execute following commands to set the right environment.
+> Note: In case you are using an [`IBM Cloud TechZone Environment`](https://techzone.ibm.com), please execute following commands to set the right environment.
 
 ```sh
 export MYPROJECT=<project from email>

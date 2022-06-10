@@ -4,7 +4,7 @@ Here we use the [IBM Cloud Log Analysis](https://cloud.ibm.com/docs/log-analysis
 
 ### Create the logging service automatically
 
->Note: If you are using an [`IBM Cloud Techzone Environment`](https://techzone.ibm.com), you can skip the `Create the logging service automatically` you don't need to create the service because the service exists.
+>Note: If you are using an [`IBM Cloud TechZone Environment`](https://techzone.ibm.com), you can skip the `Create the logging service automatically` you don't need to create the service because the service exists.
 
 You can create the lite service instances for logging and monitoring by using this bash script [`ce-create-monitoring-logging-services.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-create-monitoring-logging-services.sh)
 

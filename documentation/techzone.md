@@ -1,6 +1,6 @@
-# Reserve a Techzone environment
+# Reserve a TechZone environment
 
-### Step 1: Open the [Techzone asset](https://techzone.ibm.com/collection/an-example-to-deploy-a-existing-java-microservices-based-application-to-codeengine)
+### Step 1: Open the [TechZone asset](https://techzone.ibm.com/collection/an-example-to-deploy-a-existing-java-microservices-based-application-to-codeengine)
 
 ### Step 2: Select the environments section of the asset
 

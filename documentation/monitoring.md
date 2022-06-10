@@ -10,7 +10,7 @@ The following simplified architecture diagram show the dependencies of the `Code
 
 ### Create the monitoring service automatically
 
->Note: If you are using an [`IBM Cloud Techzone Environment`](https://techzone.ibm.com), you can skip the `Create the monitoring service automatically` you don't need to create the service because the service exists.
+>Note: If you are using an [`IBM Cloud TechZone Environment`](https://techzone.ibm.com), you can skip the `Create the monitoring service automatically` you don't need to create the service because the service exists.
 
 You can create the lite service instances for `logging` and `monitoring` by using this bash script [`ce-create-monitoring-logging-services.sh`](https://github.com/IBM/ce-cns/blob/master/CE/ce-create-monitoring-logging-services.sh).
 
