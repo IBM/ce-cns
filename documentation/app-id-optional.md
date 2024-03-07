@@ -1,5 +1,7 @@
 # Optional Lab 3: Run the example application with App ID
 
+> Attention: **Outdated!** Doesn't work fully correctly anymore!
+
 In this optional lab, we use an [IBM Cloud App ID](https://www.ibm.com/cloud/app-id) service instance for authentication and authorization.
 
 We will create an [IBM Cloud App ID](https://www.ibm.com/cloud/app-id) service instance using a **"lite"** plan, this plan type does not create additional costs for us.

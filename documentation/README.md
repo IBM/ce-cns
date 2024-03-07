@@ -1,5 +1,7 @@
 # Jumpstart: Deploy a Java Microservices Application to `Code Engine`
 
+> Attention: **Outdated!** Doesn't work fully correctly anymore!
+
 ### Objectives
 
 The workshop addresses the topic containerized applications on `IBM Cloud Code Engine`. ([GitHub project](https://github.com/ibm/ce-cns/))
@@ -19,7 +21,7 @@ Here is a `1-hour` YouTube `live stream` on [IBM Developer](https://www.youtube.
 
 ### Prerequisites
 
-* In order to run this workshop, you will need to create an [IBM Cloud `PayAsYouGo` account](https://ibm.biz/BdfXAn) (or log in to your existing account).
+* To run this workshop, you will need to create an [IBM Cloud `PayAsYouGo` account](https://ibm.biz/BdfXAn) (or log in to your existing account).
 
   > `Code Engine` has a `free tier` per month, and we expect, if you haven't used that `free tier` in current month, you can execute the workshop without creating any additional costs. For the monitoring and logging we will use free lite plans for the service instances [IBM Cloud Monitoring](https://cloud.ibm.com/docs/monitoring?topic=monitoring-getting-started#getting-started) and 
  [IBM Cloud Log Analysis](https://cloud.ibm.com/docs/log-analysis?topic=log-analysis-getting-started#getting-started).

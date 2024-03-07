@@ -22,9 +22,9 @@ export STATUS="Running"
 export FRONTEND_NAME="Cloud Native Starter with App ID"
 
 # Application Images
-export WEBAPP_IMAGE="quay.io/$REPOSITORY/web-app-ce-appid:v4"
-export WEBAPI_IMAGE="quay.io/$REPOSITORY/web-api-ce-appid:v4"
-export ARTICLES_IMAGE="quay.io/$REPOSITORY/articles-ce-appid:v4"
+export WEBAPP_IMAGE="quay.io/$REPOSITORY/web-app-ce-appid:v5"
+export WEBAPI_IMAGE="quay.io/$REPOSITORY/web-api-ce-appid:v5"
+export ARTICLES_IMAGE="quay.io/$REPOSITORY/articles-ce-appid:v5"
 
 # Application Names
 export WEBAPI=web-api-appid
@@ -301,7 +301,7 @@ function deployArticles(){
                                    --env APPID_AUTH_SERVER_URL_TENANT_A="$APPLICATION_OAUTHSERVERURL" \
                                    --env APPID_CLIENT_ID_TENANT_A="$APPLICATION_CLIENTID" \
                                    --max-scale 1 \
-                                   --min-scale 0 \
+                                   --min-scale 1 \
                                    --cluster-local                                        
 
     ibmcloud ce application get --name "$ARTICLES"
@@ -322,7 +322,7 @@ function deployWebAPI(){
                                    --env APPID_CLIENT_ID_TENANT_A="$APPLICATION_CLIENTID" \
                                    --env CNS_ARTICLES_URL_TENANT_A="http://$ARTICLES.$PROJECT_NAMESPACE.svc.cluster.local/articlesA" \
                                    --max-scale 1 \
-                                   --min-scale 0 \
+                                   --min-scale 1 \
                                    --port 8080 
 
     ibmcloud ce application get --name "$WEBAPI"
@@ -341,7 +341,7 @@ function deployWebApp(){
                                    --env VUE_APPID_CLIENT_ID="$APPLICATION_CLIENTID" \
                                    --env VUE_APPID_DISCOVERYENDPOINT="$APPLICATION_DISCOVERYENDPOINT" \
                                    --max-scale 1 \
-                                   --min-scale 0 \
+                                   --min-scale 1 \
                                    --port 8080 
     
     ibmcloud ce application get --name "$WEBAPP"
