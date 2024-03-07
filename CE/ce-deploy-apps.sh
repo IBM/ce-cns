@@ -36,19 +36,25 @@ function setupCLIenvCE() {
   
   ibmcloud target -g $RESOURCE_GROUP
   ibmcloud target -r $REGION
-  ibmcloud ce project get --name $PROJECT_NAME
-  ibmcloud ce project select -n $PROJECT_NAME
-  
+
+  RESULT=$(ibmcloud ce project get --name $PROJECT_NAME | grep "Status" |  awk '{print $2;}')
+  if [[ $RESULT == "active" ]]; then
+        echo "*** The project $PROJECT_NAME exists."
+        ibmcloud ce project select -n $PROJECT_NAME
+  else
+        ibmcloud ce project create --name $PROJECT_NAME 
+        ibmcloud ce project select -n $PROJECT_NAME
+  fi
+
   #to use the kubectl commands
   ibmcloud ce project select -n $PROJECT_NAME --kubecfg
   
-  # NAMESPACE=$(kubectl get namespaces | awk '/NAME/ { getline; print $0;}' | awk '{print $1;}')
-  # NAMESPACE=$(ibmcloud ce project get --name $PROJECT_NAME --output json | sed -n 's|.*"namespace":"\([^"]*\)".*|\1|p')
-  NAMESPACE=$(ibmcloud ce project get --name $PROJECT_NAME --output json | grep "namespace" | awk '{print $2;}' | sed 's/"//g' | sed 's/,//g')
-  echo "Namespace: $NAMESPACE"
-  kubectl get pods -n $NAMESPACE
+  export PROJECT_NAMESPACE=$(ibmcloud ce project get --name $PROJECT_NAME --output json | grep "namespace" | awk '{print $2;}' | sed 's/"//g' | sed 's/,//g')
+  echo "Code Engine project namespace: $PROJECT_NAMESPACE"
+  kubectl get pods -n $PROJECT_NAMESPACE
 
   CHECK=$(ibmcloud ce project get -n $PROJECT_NAME | awk '/Apps/ {print $2;}')
+
   echo "**********************************"
   echo "Check for existing apps? '$CHECK'"
   echo "**********************************"

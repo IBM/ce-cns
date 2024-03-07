@@ -62,7 +62,7 @@ _Note:_ We use here
 
 1. Open the Keycloak in a browser and select the Administration Console
 
-  Use following URL:
+Use the following URL:
 
   ```sh
   http://localhost:8282/
@@ -82,7 +82,7 @@ _Note:_ We use here
 
 #### Step 3: Press `view all users`
 
-You should see following users: `admin`, `alice`, `jdoe`
+You should see the following users: `admin`, `alice`, `jdoe`
 
 ![](images/keycloak-users.png)
 

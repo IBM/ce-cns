@@ -19,9 +19,7 @@ The following simplified architecture diagram show the dependencies of the `Code
 
 ### Steps
 
-#### Step 1: Create an IBM Cloud Container image `Namespace`
-
- 1. Open following link:
+#### Step 1: Create an IBM Cloud Container image `Namespace`Open the following link:
 
     ```sh
     https://cloud.ibm.com/registry/namespaces
@@ -49,10 +47,7 @@ The following simplified architecture diagram show the dependencies of the `Code
     *   Registry name: `ibm-container-registry`
     *   Registry server: `us.icr.io`
     *   As you see, we need an `IAM API Key`. So we leave this browser tab open and we create a new browser tab.
-
-    ![](images/ibm-ce-registry-access-02.png)
-
- 3. Open following link in the new browser tab
+Open the following link in the new browser tab
 
     ```sh
     https://cloud.ibm.com/iam/apikeys
@@ -87,10 +82,8 @@ The following simplified architecture diagram show the dependencies of the `Code
     ![](images/ibm-ce-container-build-01.png)
 
  2. The `Specify build details` wizard appears, which contains three steps `Sources`, `Strategy` and `Output`.
-    
-    ![](images/ibm-ce-container-build-02.png)
 
- 3. Insert following values for `Sources` and press `Next`
+ 3. Insert the following values for `Sources` and press `Next`
 
     * Name: `web-app-image`
     * Code repo URL: `https://github.com/IBM/ce-cns`
@@ -107,7 +100,7 @@ The following simplified architecture diagram show the dependencies of the `Code
 
     ![](images/ibm-ce-container-build-03.png)
 
- 5. Insert or select following values for `Output` and press `Done`
+ 5. Insert or select the following values for `Output` and press `Done`
 
     * Registry server: `us.icr.io`
     * Registry access: `ibm-container-registry`

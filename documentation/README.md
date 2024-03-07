@@ -106,7 +106,7 @@ The workshop uses following IBM Cloud Services:
  * [IBM Cloud Monitoring](https://cloud.ibm.com/docs/monitoring?topic=monitoring-getting-started#getting-started) (lite plan)
  * [IBM Cloud Log Analysis](https://cloud.ibm.com/docs/log-analysis?topic=log-analysis-getting-started#getting-started) (lite plan)
 
-`IBM Cloud Code Engine` is build on [Open Source](https://en.wikipedia.org/wiki/Open_source) technologies:
+`IBM Cloud `Code Engine` is built on [Open](https://en.wikipedia.org/wiki/Open_source) Source](https://en.wikipedia.org/wiki/Open_source) technologies:
 
   * [Knative](https://knative.dev/)
   * [Kubernetes](https://knative.dev/)
@@ -115,7 +115,7 @@ The workshop uses following IBM Cloud Services:
         
 ### Technology Used
 
-The example mircorservices application example is build with following `technologies/tools/frameworks`.
+The example microservices application example is built with the following `technologies/`tools/frameworks`.
 
   * [Microservices architecture](https://en.wikipedia.org/wiki/Microservices)
   * [Keycloak](https://www.keycloak.org)

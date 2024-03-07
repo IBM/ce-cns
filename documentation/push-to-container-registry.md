@@ -77,7 +77,7 @@ _Note:_ In the image below you see an example where you can find the name, you s
 
 ![](images/quay-user.png)
 
-### Step 6: Execute following bash automation
+### Step 6: Execute the following bash automation
 
 This bash script will build and push your container images to [Red Hat Quay.io](https://quay.io).
 

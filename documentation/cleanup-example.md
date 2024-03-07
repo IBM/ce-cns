@@ -8,7 +8,7 @@ Here we just delete all applications to avoid additional costs for you.
 
 #### Step 1: Open the `IBM Cloud Shell`
 
-Use following link to directly open the `IBM Cloud Shell`.
+Use the following link to directly open the `IBM Cloud Shell`.
 
 <https://cloud.ibm.com/shell>
 
@@ -26,7 +26,7 @@ Now you are logged on with your IBM Cloud account.
 #### Step 3: (Optional) Clone the GitHub project to the `IBM Cloud Shell` 
 
 In case your `IBM Cloud Shell` **session has expired** it might be possible that the cloned project was deleted.
-If this happened, you need to clone the project again, because we will be using a bash script for the deletion of the project.
+If this happens, you need to clone the project again, because we will be using a bash script for the deletion of the project.
 
 ```sh
 git clone https://github.com/thomassuedbroecker/ce-cns.git
@@ -43,13 +43,9 @@ cd $ROOT_FOLDER/CE
 export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
 ```
 
-#### Step 5: Execute following bash automation
+#### Step 5: Execute the following bash automation
 
-```sh
-bash ce-remove-apps.sh
-```
-
-Relevant for your configuration are following variables in the bash script:
+Relevant to your configuration are the following variables in the bash script:
 
 ```sh
 export PROJECT_NAME=$MYPROJECT #your project name

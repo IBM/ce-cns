@@ -1,6 +1,6 @@
 # Optional Lab 3: Run the example application with App ID
 
-In this optional lab we use an [IBM Cloud App ID](https://www.ibm.com/cloud/app-id) service instance for authentication and authorization .
+In this optional lab, we use an [IBM Cloud App ID](https://www.ibm.com/cloud/app-id) service instance for authentication and authorization.
 
 We will create an [IBM Cloud App ID](https://www.ibm.com/cloud/app-id) service instance using a **"lite"** plan, this plan type does not create additional costs for us.
 
@@ -22,7 +22,7 @@ Here is a simplified architecture diagram which shows the **Web-App** and the tw
 
 ### Deploy the example application with App ID
 
-#### (optional) Step 1 : Clone the GitHub project to the **`IBM Cloud Shell`**
+#### (optional) Step 1: Clone the GitHub project to the **`IBM Cloud Shell`**
 
 > Only needed, if you haven't done it before.
 
@@ -42,6 +42,19 @@ ROOT_FOLDER=$(pwd)
 
 ```sh
 export MYPROJECT=cloud-native-starter-[YOUR-EXTENTION]
+```
+
+Optional setting:
+
+```sh
+export RESOURCE_GROUP=[YOUR-GROUP]
+export REGION=[YOUR-REGION]
+```
+
+> Log on to IBM Cloud!
+
+```sh
+ibmcloud login  -g $RESOURCE_GROUP -r $REGION (-sso Optional)
 ```
 
 #### Step 3: Execute following bash automation
@@ -66,7 +79,7 @@ Here are the simplified steps that are carried out in the bash script using main
 
 #### Step 5: Inspect the output
 
-The relevant urls will be listed.
+The relevant URLs will be listed.
 
 ```sh
 ************************************

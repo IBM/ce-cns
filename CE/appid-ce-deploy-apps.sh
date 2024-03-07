@@ -34,7 +34,7 @@ export ARTICLES=articles-appid
 # Application URLs
 export WEBAPI_URL="http://localhost:8083"
 export WEBAPP_URL="http://localhost:8080"
-export ARTICEL_URL="http://$ARTICLES.$NAMESPACE.svc.cluster.local/articlesA"
+#export ARTICEL_URL="http://$ARTICLES.$NAMESPACE.svc.cluster.local/articlesA"
 
 #--------------------
 # App ID
@@ -78,17 +78,27 @@ function setupCLIenvCE() {
   
   ibmcloud target -g $RESOURCE_GROUP
   ibmcloud target -r $REGION
-  ibmcloud ce project get --name $PROJECT_NAME
-  ibmcloud ce project select -n $PROJECT_NAME
-  
+
+  RESULT=$(ibmcloud ce project get --name $PROJECT_NAME | grep "Status" |  awk '{print $2;}')
+  if [[ $RESULT == "active" ]]; then
+        echo "*** The project $PROJECT_NAME exists."
+        ibmcloud ce project select -n $PROJECT_NAME
+  else
+        ibmcloud ce project create --name $PROJECT_NAME 
+        ibmcloud ce project select -n $PROJECT_NAME
+  fi
+
   #to use the kubectl commands
   ibmcloud ce project select -n $PROJECT_NAME --kubecfg
   
-  NAMESPACE=$(ibmcloud ce project get --name $PROJECT_NAME --output json | grep "namespace" | awk '{print $2;}' | sed 's/"//g' | sed 's/,//g')
-  echo "Namespace: $NAMESPACE"
-  kubectl get pods -n $NAMESPACE
+  export PROJECT_NAMESPACE=$(ibmcloud ce project get --name $PROJECT_NAME --output json | grep "namespace" | awk '{print $2;}' | sed 's/"//g' | sed 's/,//g')
+  echo "Code Engine project namespace: $PROJECT_NAMESPACE"
+  kubectl get pods -n $PROJECT_NAMESPACE
+  export ARTICEL_URL="http://$ARTICLES.$PROJECT_NAMESPACE.svc.cluster.local/articlesA"
+
 
   CHECK=$(ibmcloud ce project get -n $PROJECT_NAME | awk '/Apps/ {print $2;}')
+  
   echo "**********************************"
   echo "Check for existing apps? '$CHECK'"
   echo "**********************************"
@@ -296,12 +306,12 @@ function deployArticles(){
 
     ibmcloud ce application get --name "$ARTICLES"
 
-    echo "ARTICLES URL: http://$ARTICLES.$NAMESPACE.svc.cluster.local/articlesA"
+    echo "ARTICLES URL: http://$ARTICLES..svc.cluster.local/articlesA"
 }
 
 function deployWebAPI(){
 
-    echo "Needed Articles URL: http://$ARTICLES.$NAMESPACE.svc.cluster.local/articlesA"
+    echo "Needed Articles URL: http://$ARTICLES.$PROJECT_NAMESPACE.svc.cluster.local/articlesA"
     
     # Valid vCPU and memory combinations: https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo
     ibmcloud ce application create --name "$WEBAPI" \
@@ -310,7 +320,7 @@ function deployWebAPI(){
                                    --memory "1G" \
                                    --env APPID_AUTH_SERVER_URL_TENANT_A="$APPLICATION_OAUTHSERVERURL" \
                                    --env APPID_CLIENT_ID_TENANT_A="$APPLICATION_CLIENTID" \
-                                   --env CNS_ARTICLES_URL_TENANT_A="http://$ARTICLES.$NAMESPACE.svc.cluster.local/articlesA" \
+                                   --env CNS_ARTICLES_URL_TENANT_A="http://$ARTICLES.$PROJECT_NAMESPACE.svc.cluster.local/articlesA" \
                                    --max-scale 1 \
                                    --min-scale 0 \
                                    --port 8080 
@@ -347,9 +357,9 @@ function kubeDeploymentVerification(){
     echo " pods, deployments and configmaps details "
     echo "************************************"
     
-    kubectl get pods -n $NAMESPACE
-    kubectl get deployments -n $NAMESPACE
-    kubectl get configmaps -n $NAMESPACE
+    kubectl get pods -n $PROJECT_NAMESPACE
+    kubectl get deployments -n $PROJECT_NAMESPACE
+    kubectl get configmaps -n $PROJECT_NAMESPACE
 
 }
 
@@ -360,7 +370,7 @@ function getKubeContainerLogs(){
     echo "************************************"
 
     FIND=$WEBAPI
-    WEBAPI_LOG=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $1}')
+    WEBAPI_LOG=$(kubectl get pod -n $PROJECT_NAMESPACE | grep $FIND | awk '{print $1}')
     echo $WEBAPI_LOG
     kubectl logs $WEBAPI_LOG user-container
 
@@ -369,7 +379,7 @@ function getKubeContainerLogs(){
     echo "************************************"
 
     FIND=$ARTICLES
-    ARTICLES_LOG=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $1}')
+    ARTICLES_LOG=$(kubectl get pod -n $PROJECT_NAMESPACE | grep $FIND | awk '{print $1}')
     echo $ARTICLES_LOG
     kubectl logs $ARTICLES_LOG user-container
 
@@ -378,7 +388,7 @@ function getKubeContainerLogs(){
     echo "************************************"
 
     FIND=$WEBAPP
-    WEBAPP_LOG=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $1}')
+    WEBAPP_LOG=$(kubectl get pod -n $PROJECT_NAMESPACE | grep $FIND | awk '{print $1}')
     echo $WEBAPP_LOG
     kubectl logs $WEBAPP_LOG user-container
 }
@@ -395,7 +405,7 @@ function checkKubernetesPod (){
         while :
         do
             FIND=$i
-            STATUS_CHECK=$(kubectl get pod -n $NAMESPACE | grep $FIND | awk '{print $3}')
+            STATUS_CHECK=$(kubectl get pod -n $PROJECT_NAMESPACE | grep $FIND | awk '{print $3}')
             echo "Status: $STATUS_CHECK"
             if [ "$STATUS" = "$STATUS_CHECK" ]; then
                 echo "$(date +'%F %H:%M:%S') Status: $FIND is Ready"
@@ -477,5 +487,5 @@ echo "************************************"
 echo " - oAuthServerUrl   : $APPLICATION_OAUTHSERVERURL"
 echo " - discoveryEndpoint: $APPLICATION_DISCOVERYENDPOINT"
 echo " - Web-API          : $WEBAPI_URL/articlesA"
-echo " - Articles         : http://$ARTICLES.$NAMESPACE.svc.cluster.local/articlesA"
+echo " - Articles         : http://$ARTICLES.$PROJECT_NAMESPACE.svc.cluster.local/articlesA"
 echo " - Web-App          : $WEBAPP_URL"
